@@ -92,6 +92,45 @@ npm i
 
 ## Routes
 
+### General 
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/` | Home page |
+
+### Authentication 
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/auth/sign-up` | Sign-up form |
+| POST | `/auth/sign-up` | Create patient account |
+| GET | `/auth/sign-in` | Sign-in form |
+| POST | `/auth/sign-in` | Log user in |
+| GET | `/auth/sign-out` | Log user out |
+
+
+### Hospital
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/hospitals` | List all hospitals |
+| GET | `/hospitals/:hospitalId` | View hospital details |
+
+### Department
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/departments/:departmentId` | View department and doctors |
+
+
+### Appointments
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/appointments` | View patient appointments |
+| GET | `/appointments/new` | New appointment form |
+| POST | `/appointments` | Book appointment |
+| GET | `/appointments/:appointmentId` | View appointment details |
+| GET | `/appointments/:appointmentId/edit` | Edit appointment form |
+| PUT | `/appointments/:appointmentId` | Update appointment |
+| DELETE | `/appointments/:appointmentId` | Cancel appointment |
 
 <br>
 <br>
