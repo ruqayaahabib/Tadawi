@@ -11,6 +11,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+   role:{
+    type: String, 
+    enum: ["patient", "doctor", "admin"],
+    default: "patient"
+  },
+  department:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Department"
+  }
+
 }, {timestamps: true});
 
 const User = mongoose.model("User", userSchema);
