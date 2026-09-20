@@ -85,6 +85,7 @@ npm i
 <br>
 
 ## Database Design
+![Tadawi ERD](./public/images/TADAWI.png)
 
 
 <br>
@@ -150,3 +151,11 @@ npm i
 <br>
 
 ## Credits
+
+
+
+
+<br>
+<br>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F766E,50:14B8A6,100:99F6E4&height=120&section=footer">
