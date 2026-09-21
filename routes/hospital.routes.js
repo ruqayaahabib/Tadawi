@@ -5,7 +5,7 @@ const Hospital = require("../models/Hospital")
 // Displat all hospitals
 router.get("/", async(req,res)=>{
     const allHospital = await Hospital.find()
-    res.render("all-hospital.ejs", {hospitals :allHospital})
+    res.render("hospital/all-hospital.ejs", {hospitals :allHospital})
 })
 
 // Display details of one hospital 

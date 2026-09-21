@@ -53,3 +53,6 @@ router.delete("/:appointmentId",isSignedIn, async (req,res)=>{
     const deletedAppointment = await Appointment.findByIdAndDelete(req.params.appointmentId)
     res.redirect("/appointments")
 })
+
+
+module.exports = router;
