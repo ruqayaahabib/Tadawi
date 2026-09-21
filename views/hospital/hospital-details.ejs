@@ -13,7 +13,7 @@
 
 
     <h2>Departments</h2>
-    <% for(let alldepartment of departments){%>
+    <% for(let department of departments){%>
         <h3><%= department.name  %></h3>
         <p><%=department.description %></p>
         <a href="/departments/ <%=department._id %>">

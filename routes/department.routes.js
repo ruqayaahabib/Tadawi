@@ -12,7 +12,7 @@ router.get("/:departmentId", async(req,res)=>{
         department: req.params.departmentId
     })
 
-    res.render("departments.ejs", {department : foundDepartment, doctors: allDoctor})
+    res.render("department/departments.ejs", {department : foundDepartment, doctors: allDoctor})
 })
 
 module.exports = router

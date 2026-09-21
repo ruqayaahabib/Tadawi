@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Details</title>
+</head>
+<body>
+    <h1><%= department.name  %></h1>
+
+    <p><%= department.description  %></p>
+    
+    <h2>Doctors</h2>
+    <% for(let doctor of doctors){ %>
+        <p><%= doctor.username  %></p>
+
+        <a href="/appointments/new<% doctor._id %>">
+            Book Appointment
+        </a>
+
+        <% } %>
+</body>
+</html>

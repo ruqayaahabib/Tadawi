@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Hospitals</h1>
-    <% for(let oneHospital of hospitals) {%>
+    <% for(let hospital of hospitals) {%>
         <h2><%= hospital.name  %></h2>
         <p>Location: <%= hospital.location %></p>
         <a href="/hospitals/  <%= hospital._id %>">

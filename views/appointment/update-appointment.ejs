@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Appointment</title>
+</head>
+<body>
+    <h1>Update Appointment</h1>
+    <form action="/appointments/<%=appointment._id%>?_method=PUT" method="post">
+        <label for="date">Date:</label>
+        <input value="<%= appointment.date %>" id="date" name="date" type="date">
+
+        <label for="time">Time:</label>
+        <input value="<%= appointment.time %>" id="time" name="time" type="time">
+
+        <label for="reason">Reason:</label>
+        <input value="<%= appointment.reason %>" id="reason" name="reason" type="text">
+
+        <button>Update</button>
+
+    </form>
+</body>
+</html>

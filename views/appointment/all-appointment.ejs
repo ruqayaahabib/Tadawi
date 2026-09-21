@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Appointments</title>
+</head>
+<body>
+    <h1>My Appointments</h1>
+    <% for (let oneAppointment of appointments){ %> 
+        <p>Date: <%= oneAppointment.date  %></p>
+        <p>Time: <%= oneAppointment.time  %></p>
+        <p>Status: <%= oneAppointment.status  %></p>
+
+        <a href="/appointments/<%= oneAppointment._id  %>">
+            View Details
+        </a>
+        <% } %>
+</body>
+</html>
