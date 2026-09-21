@@ -6,7 +6,7 @@ const departmentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    descriptin: {
+    description: {
         type: String
     },
     hospital:{

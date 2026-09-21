@@ -19,6 +19,7 @@ const indexController = require("./routes/index.routes.js");
 const hospitalRouter = require("./routes/hospital.routes.js")
 const departmentRouter = require("./routes/department.routes.js")
 const appointmentRouter = require("./routes/appointments.routes.js")
+const adminRouter = require("./routes/admin.routes.js")
 
 
 
@@ -62,7 +63,7 @@ app.use('/',indexController)
 app.use("/hospitals", hospitalRouter)
 app.use("/departments", departmentRouter)
 app.use("/appointments", appointmentRouter)
-
+app.use("/admin", adminRouter)
 
 
 
