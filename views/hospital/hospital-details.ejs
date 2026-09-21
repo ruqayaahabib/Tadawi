@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Details</title>
+</head>
+<body>
+    <h1><% = hospital.name %></h1>
+
+    <p>Location<%=  hospital.location%></p>
+    <p>Phone Number<%= hospital.phone  %></p>
+
+
+    <h2>Departments</h2>
+    <% (for alldepartment of departments){%>
+        <h3><%= department.name  %></h3>
+        <p><% =department.description %></p>
+        <a href="/departments/ <% =department._id %>">
+            View Departments
+        </a>
+        
+        <% } %>
+</body>
+</html>
