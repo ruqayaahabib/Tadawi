@@ -6,7 +6,7 @@ const Hospital = require("../models/Hospital")
 const Department = require("../models/Department")
 const User = require("../models/User")
 const bcrypt = require('bcrypt')
-
+const upload = require('../middleware/photo-upload')
 
 router.get("/", isAdmin, async(req,res)=>{
     res.render("admin/admin-dash.ejs")
@@ -25,11 +25,13 @@ router.get("/hospitals/new", isAdmin, async(req,res)=>{
 })
 
 
-router.post("/hospitals", isAdmin, async (req,res)=>{
+router.post("/hospitals", isAdmin,upload.single('imageUrl'), async (req,res)=>{
+    console.log(req.file)
     const createHospital = await Hospital.create({
         name: req.body.name,
         phone: req.body.phone,
-        location: req.body.location
+        location: req.body.location,
+        imageUrl:req.file.path
 
     })
     res.redirect("/admin/hospitals")
@@ -130,13 +132,14 @@ router.get("/doctors/new", isAdmin, async(req,res)=>{
 })
 
 
-router.post("/doctors", isAdmin, async (req,res)=>{
+router.post("/doctors", isAdmin,upload.single('imageUrl'),async (req,res)=>{
     const createDoctor = await User.create({
         username: req.body.username,
         password: bcrypt.hashSync(req.body.password,12),
         role: "doctor",
         department: req.body.department,
-        hospital: req.body.hospital
+        hospital: req.body.hospital,
+        imageUrl:req.file.path
 
     })
     res.redirect("/admin/doctors")

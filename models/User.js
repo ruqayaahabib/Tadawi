@@ -23,7 +23,10 @@ const userSchema = new mongoose.Schema({
   hospital:{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Hospital"
-  }
+  },
+  imageUrl:{
+        type:String
+    }
 
 }, {timestamps: true});
 

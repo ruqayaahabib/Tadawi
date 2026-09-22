@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Add Hospital</h1>
-    <form action="/admin/hospitals" method="post">
+    <form action="/admin/hospitals" method="post" enctype="multipart/form-data">
         <label for="name">Name:</label>
         <input id="name" name="name" type="text">
 
@@ -17,6 +17,9 @@
         <label for="location">location:</label>
         <input id="location" name="location" type="text">
 
+
+        <label for="imageUrl">Photo:</label>
+        <input id="imageUrl" name="imageUrl" type="file">
         <button>Add</button>
 
     </form>

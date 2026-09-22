@@ -11,6 +11,9 @@ const hospitalSchema = new mongoose.Schema({
     },
     location:{
         type: String
+    },
+    imageUrl:{
+        type:String
     }
 }, {timestamps: true})
 

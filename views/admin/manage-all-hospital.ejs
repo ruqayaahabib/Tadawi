@@ -10,6 +10,8 @@
 
     <a href="/admin/hospitals/new">Add New Hospital</a>
     <% for (let oneHospital of hospitals) {%>
+        <%= oneHospital.imageUrl%>
+        <img src="/<%= oneHospital.imageUrl%>" alt="">
         <h2><%= oneHospital.name  %></h2>
         <p>Phone Number: <%= oneHospital.phone %></p>
         <p>Location: <%= oneHospital.location %></p>

@@ -8,8 +8,10 @@
 <body>
     <h1>Manage Doctors</h1>
     <a href="/admin/doctors/new">Add New Doctor</a>
-
         <% for (let oneDoctor of doctors) {%>
+        <%= oneDoctor.imageUrl%>
+        <img src="/<%= oneDoctor.imageUrl%>" alt="">
+
         <h2><%= oneDoctor.username  %></h2>
 
         <p>Department: <%= oneDoctor.department.name %></p>

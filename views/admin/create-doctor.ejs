@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Add New Doctor</h1>
-        <form action="/admin/doctors" method="post">
+        <form action="/admin/doctors" method="post" enctype="multipart/form-data">
         <label for="username">Name:</label>
         <input id="username" name="username" type="text">
 
@@ -35,6 +35,9 @@
                 </option>
                 <% } %>
         </select>
+
+        <label for="imageUrl">Photo:</label>
+        <input id="imageUrl" name="imageUrl" type="file">
 
         <button>Add</button> 
     
