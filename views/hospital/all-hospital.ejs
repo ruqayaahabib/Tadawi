@@ -10,7 +10,7 @@
     <% for(let hospital of hospitals) {%>
         <h2><%= hospital.name  %></h2>
         <p>Location: <%= hospital.location %></p>
-        <a href="/hospitals/  <%= hospital._id %>">
+        <a href="/hospitals/<%= hospital._id %>">
             View Details
         </a>
         <% } %>

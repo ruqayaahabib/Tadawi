@@ -6,18 +6,18 @@
     <title>Hospital Details</title>
 </head>
 <body>
-    <h1><% = hospital.name %></h1>
+    <h1><%= hospital.name %></h1>
 
-    <p>Location<%=  hospital.location%></p>
-    <p>Phone Number<%= hospital.phone  %></p>
+    <p>Location: <%= hospital.location%></p>
+    <p>Phone Number: <%= hospital.phone%></p>
 
 
     <h2>Departments</h2>
     <% for(let department of departments){%>
         <h3><%= department.name  %></h3>
-        <p><%=department.description %></p>
-        <a href="/departments/ <%=department._id %>">
-            View Departments
+        <p><%= department.description %></p>
+        <a href="/departments/<%= department._id %>">
+            View Department Details
         </a>
         
         <% } %>
