@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment Details</title>
+</head>
+<body>
+    <h1>Appointment Details</h1>
+    <h2>Patient: <%= appointment.patient.username %></h2>
+    <p>Date: <%= appointment.date %></p>
+    <p>Time: <%= appointment.time  %></p>
+    <p>Reason: <%= appointment.reason %></p>
+
+    <h2>Update Status</h2>
+    <form action="/doctor/appointments/<%= appointment._id %>?_method=PUT" method="POST">
+        <label for="status">Status:</label>
+        <select name="status" id="status">
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="declined">Declined</option>
+            <option value="completed">Completed</option> </select>
+        <button>Update Status</button>
+    </form>
+</body>
+</html>

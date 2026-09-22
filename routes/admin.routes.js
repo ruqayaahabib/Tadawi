@@ -5,6 +5,7 @@ const isAdmin = require("../middleware/is-admin")
 const Hospital = require("../models/Hospital")
 const Department = require("../models/Department")
 const User = require("../models/User")
+const bcrypt = require('bcrypt')
 
 
 router.get("/", isAdmin, async(req,res)=>{
@@ -132,7 +133,7 @@ router.get("/doctors/new", isAdmin, async(req,res)=>{
 router.post("/doctors", isAdmin, async (req,res)=>{
     const createDoctor = await User.create({
         username: req.body.username,
-        password: req.body.password,
+        password: bcrypt.hashSync(req.body.password,12),
         role: "doctor",
         department: req.body.department,
         hospital: req.body.hospital

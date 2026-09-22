@@ -20,7 +20,7 @@ const hospitalRouter = require("./routes/hospital.routes.js")
 const departmentRouter = require("./routes/department.routes.js")
 const appointmentRouter = require("./routes/appointments.routes.js")
 const adminRouter = require("./routes/admin.routes.js")
-
+const doctorRouter = require("./routes/doctor.routes.js")
 
 
 // Middleware
@@ -64,7 +64,7 @@ app.use("/hospitals", hospitalRouter)
 app.use("/departments", departmentRouter)
 app.use("/appointments", appointmentRouter)
 app.use("/admin", adminRouter)
-
+app.use("/doctor", doctorRouter)
 
 
 
