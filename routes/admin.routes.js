@@ -64,7 +64,7 @@ router.delete("/hospitals/:hospitalId",isAdmin, async (req,res)=>{
 
 // Display all Departments 
 router.get("/departments",isAdmin,async(req,res)=>{
-    const allDepartment = await Department.find()
+    const allDepartment = await Department.find().populate("hospital")
     res.render("admin/manage-all-departments.ejs", {departments: allDepartment})
 } )
 
@@ -116,7 +116,7 @@ router.delete("/departments/:departmentId",isAdmin, async (req,res)=>{
 
 // Display all Doctors 
 router.get("/doctors",isAdmin,async(req,res)=>{
-    const allDoctors = await User.find({role: "doctor"})
+    const allDoctors = await User.find({role: "doctor"}).populate("department")
     res.render("admin/manage-all-doctors.ejs", {doctors: allDoctors})
 } )
 
