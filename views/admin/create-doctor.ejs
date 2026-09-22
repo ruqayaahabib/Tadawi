@@ -23,8 +23,17 @@
                     <%= oneDepartment.name  %>
                 </option>
                 <% } %>
+        </select>
 
 
+
+        <label for="hospital">Hospital:</label>
+        <select name="hospital" id="hospital">
+            <% for(let oneHospital of hospitals){ %>
+                <option value="<%= oneHospital._id  %>">
+                    <%= oneHospital.name  %>
+                </option>
+                <% } %>
         </select>
 
         <button>Add</button> 

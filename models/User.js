@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
   department:{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Department"
+  },
+  hospital:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Hospital"
   }
 
 }, {timestamps: true});

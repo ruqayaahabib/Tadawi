@@ -116,7 +116,7 @@ router.delete("/departments/:departmentId",isAdmin, async (req,res)=>{
 
 // Display all Doctors 
 router.get("/doctors",isAdmin,async(req,res)=>{
-    const allDoctors = await User.find({role: "doctor"}).populate("department")
+    const allDoctors = await User.find({role: "doctor"}).populate("department").populate("hospital")
     res.render("admin/manage-all-doctors.ejs", {doctors: allDoctors})
 } )
 
@@ -124,7 +124,8 @@ router.get("/doctors",isAdmin,async(req,res)=>{
 // Create a new Doctor 
 router.get("/doctors/new", isAdmin, async(req,res)=>{
     const allDepartments = await Department.find()
-    res.render("admin/create-doctor.ejs", {departments: allDepartments})
+    const allHospital = await Hospital.find()
+    res.render("admin/create-doctor.ejs", {departments: allDepartments, hospitals: allHospital})
 })
 
 
@@ -133,7 +134,8 @@ router.post("/doctors", isAdmin, async (req,res)=>{
         username: req.body.username,
         password: req.body.password,
         role: "doctor",
-        department: req.body.department
+        department: req.body.department,
+        hospital: req.body.hospital
 
     })
     res.redirect("/admin/doctors")
@@ -143,14 +145,15 @@ router.post("/doctors", isAdmin, async (req,res)=>{
 router.get("/doctors/:doctorId/edit", isAdmin,async(req,res)=>{
     const foundDoctor = await User.findById(req.params.doctorId)
     const allDepartment = await Department.find()
-    res.render("admin/edit-doctor.ejs", {doctor: foundDoctor, departments: allDepartment})
+    const allHospital = await Hospital.find()
+    res.render("admin/edit-doctor.ejs", {doctor: foundDoctor, departments: allDepartment, hospitals: allHospital})
 })
 
 
 router.put("/doctors/:doctorId", isAdmin ,async(req,res)=>{
-    const {username, department} = req.body
+    const {username, department, hospital} = req.body
     const updateDoctor = await User.findByIdAndUpdate(req.params.doctorId,{
-        username, department
+        username, department, hospital
     })
 
     res.redirect("/admin/doctors")

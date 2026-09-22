@@ -13,7 +13,7 @@
         <h2><%= oneDoctor.username  %></h2>
 
         <p>Department: <%= oneDoctor.department.name %></p>
-        <p>Hospital: <%= oneDoctor.department.hospital.name  %></p>
+        <p>Hospital: <%= oneDoctor.hospital.name  %></p>
 
         <a href="/admin/doctors/<%= oneDoctor._id %>/edit">Edit</a>
         <form action="/admin/doctors/<%= oneDoctor._id %>?_method=DELETE" method="POST">
