@@ -14,7 +14,7 @@ router.get("/", isAdmin, async(req,res)=>{
 // Display all hospitals 
 router.get("/hospitals",isAdmin,async(req,res)=>{
     const allHospital = await Hospital.find()
-    res.render("admin/manage-all-hospital.ejs", {hospital: allHospital})
+    res.render("admin/manage-all-hospital.ejs", {hospitals: allHospital})
 } )
 
 
@@ -65,7 +65,7 @@ router.delete("/hospitals/:hospitalId",isAdmin, async (req,res)=>{
 // Display all Departments 
 router.get("/departments",isAdmin,async(req,res)=>{
     const allDepartment = await Department.find()
-    res.render("admin/manage-all-departments.ejs", {department: allDepartment})
+    res.render("admin/manage-all-departments.ejs", {departments: allDepartment})
 } )
 
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Department</title>
+</head>
+<body>
+    <h1>Manage Department</h1>
+
+    <a href="/admin/departments/new">Add New Department</a>
+    <% for (let oneDepartment of departments) {%>
+        <h2><%= oneDepartment.name  %></h2>
+        <p>Description: <%= oneDepartment.description %></p>
+        <p>Hospital: <%= oneDepartment.hospital %></p>
+
+
+
+        <a href="/admin/departments/<%= oneDepartment._id %>/edit">Edit</a>
+        <form action="/admin/departments/<%= oneDepartment._id %>?_method=DELETE" method="POST">
+        <button>Delete</button> </form>
+        <% } %>
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage All Hospitals</title>
+</head>
+<body>
+    <h1>Manage Hospitals</h1>
+
+    <a href="/admin/hospitals/new">Add New Hospital</a>
+    <% for (let oneHospital of hospitals) {%>
+        <h2><%= oneHospital.name  %></h2>
+        <p>Phone Number: <%= oneHospital.phone %></p>
+        <p>Location: <%= oneHospital.location %></p>
+
+        <a href="/admin/hospitals/<%= oneHospital._id %>/edit">Edit</a>
+        <form action="/admin/hospitals/<%= oneHospital._id %>?_method=DELETE" method="POST">
+        <button>Delete</button> </form>
+        <% } %>
+</body>
+</html>

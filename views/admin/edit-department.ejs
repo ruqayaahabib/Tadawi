@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Department</title>
+</head>
+<body>
+    <h1>Edit Department</h1>
+    <form action="/admin/departments/<%=department._id%>?_method=PUT" method="post">
+        <label for="name">Name:</label>
+        <input value="<%= department.name  %>" id="name" name="name" type="text">
+
+        <label for="description">Description:</label>
+        <input value="<%= department.description  %>" id="description" name="description" type="text">
+
+
+
+        <label for="hospital">Hospital:</label>
+        <select id="hospital" name="hospital">
+        <%for (let oneHospital of hospitals){%>
+        <option value="<%= oneHospital._id %>">
+            <%= oneHospital.name%>
+
+        </option>
+        <%}%> </select>
+
+        <button>Update</button> </form>
+</body>
+</html>

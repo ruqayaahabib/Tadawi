@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Doctor</title>
+</head>
+<body>
+    <h1>Add New Doctor</h1>
+        <form action="/admin/doctors" method="post">
+        <label for="username">Name:</label>
+        <input id="username" name="username" type="text">
+
+        <label for="password">Password:</label>
+        <input id="password" name="password" type="password">
+
+
+
+        <label for="department">Department:</label>
+        <select name="department" id="department">
+            <% for(let oneDepartment of departments){ %>
+                <option value="<%= oneDepartment._id  %>">
+                    <%= oneDepartment.name  %>
+                </option>
+                <% } %>
+
+
+        </select>
+
+        <button>Add</button> 
+    
+    </form>
+
+</body>
+</html>
