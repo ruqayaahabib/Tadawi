@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Edit Doctor</h1>
-    <form action="/admin/doctors/<%=doctor._id%>?_method=PUT" method="post">
+    <form action="/admin/doctors/<%=doctor._id%>?_method=PUT" method="post" enctype="multipart/form-data">
         <label for="username">Name:</label>
         <input value="<%= doctor.username  %>" id="username" name="username" type="text">
 
@@ -34,7 +34,11 @@
                 <% } %>
         </select>
 
+        <label for="imageUrl">Photo:</label>
+        <input id="imageUrl" name="imageUrl" type="file">
 
+        <p>Original Doctor Picture</p>
+        <img src="<%= doctor.imageUrl  %>" alt="">
         <button>Update</button> 
     
     </form>

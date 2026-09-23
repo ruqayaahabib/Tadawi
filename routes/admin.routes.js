@@ -31,7 +31,7 @@ router.post("/hospitals", isAdmin,upload.single('imageUrl'), async (req,res)=>{
         name: req.body.name,
         phone: req.body.phone,
         location: req.body.location,
-        imageUrl:req.file.path
+        imageUrl:`/uploads/${req.file.filename}`
 
     })
     res.redirect("/admin/hospitals")
@@ -44,12 +44,12 @@ router.get("/hospitals/:hospitalId/edit", isAdmin,async(req,res)=>{
 })
 
 
-router.put("/hospitals/:hospitalId", isAdmin ,async(req,res)=>{
+router.put("/hospitals/:hospitalId", isAdmin, upload.single('imageUrl') ,async(req,res)=>{
     const {name, phone, location} = req.body
-    const updateHospital = await Hospital.findByIdAndUpdate(req.params.hospitalId,{
-        name, phone, location
-    })
 
+    const updateHospital = await Hospital.findByIdAndUpdate(req.params.hospitalId,{
+        name, phone, location,imageUrl:`/uploads/${req.file.filename}`
+    })
     res.redirect("/admin/hospitals")
 })
 
@@ -139,7 +139,7 @@ router.post("/doctors", isAdmin,upload.single('imageUrl'),async (req,res)=>{
         role: "doctor",
         department: req.body.department,
         hospital: req.body.hospital,
-        imageUrl:req.file.path
+        imageUrl:`/uploads/${req.file.filename}`
 
     })
     res.redirect("/admin/doctors")
@@ -154,10 +154,10 @@ router.get("/doctors/:doctorId/edit", isAdmin,async(req,res)=>{
 })
 
 
-router.put("/doctors/:doctorId", isAdmin ,async(req,res)=>{
+router.put("/doctors/:doctorId", isAdmin, upload.single('imageUrl')  ,async(req,res)=>{
     const {username, department, hospital} = req.body
     const updateDoctor = await User.findByIdAndUpdate(req.params.doctorId,{
-        username, department, hospital
+        username, department, hospital, imageUrl:`/uploads/${req.file.filename}`
     })
 
     res.redirect("/admin/doctors")

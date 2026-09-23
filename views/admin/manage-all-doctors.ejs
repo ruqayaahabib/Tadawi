@@ -10,7 +10,7 @@
     <a href="/admin/doctors/new">Add New Doctor</a>
         <% for (let oneDoctor of doctors) {%>
         <%= oneDoctor.imageUrl%>
-        <img src="/<%= oneDoctor.imageUrl%>" alt="">
+        <img src="<%= oneDoctor.imageUrl%>" alt="">
 
         <h2><%= oneDoctor.username  %></h2>
 

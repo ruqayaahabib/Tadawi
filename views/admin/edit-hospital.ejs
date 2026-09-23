@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Edit Hospital</h1>
-    <form action="/admin/hospitals/<%=hospital._id%>?_method=PUT" method="post">
+    <form action="/admin/hospitals/<%=hospital._id%>?_method=PUT" method="post" enctype="multipart/form-data">
         <label for="name">Hospital Name:</label>
         <input value="<%= hospital.name %>" id="name" name="name" type="text">
 
@@ -16,6 +16,13 @@
 
         <label for="location">Location:</label>
         <input value="<%= hospital.location %>" id="location" name="location" type="text">
+
+
+        <label for="imageUrl">Photo:</label>
+        <input id="imageUrl" name="imageUrl" type="file">
+
+        <p>Original Hospital Picture</p>
+        <img src="<%= hospital.imageUrl  %>" alt="">
 
         <button>Update</button>
 
