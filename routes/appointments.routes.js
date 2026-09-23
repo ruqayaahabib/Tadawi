@@ -11,15 +11,15 @@ router.get("/", isSignedIn,async(req,res)=>{
 })
 
 // Create a new appointment 
-router.get("/new", isSignedIn,(req,res)=>{
-    res.render("appointment/create-appointment.ejs")
+router.get("/new/:doctorId", isSignedIn,(req,res)=>{
+    res.render("appointment/create-appointment.ejs", {doctor: req.params.doctorId})
 })
 
 //Book an appointment 
-router.post("/", isSignedIn, async (req,res)=>{
+router.post("/:doctorId", isSignedIn, async (req,res)=>{
     const bookAppointment = await Appointment.create({
         patient: req.session.user._id,
-        doctor: req.body.doctor,
+        doctor: req.params.doctorId,
         date: req.body.date,
         time: req.body.time,
         reason: req.body.reason,

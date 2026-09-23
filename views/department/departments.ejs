@@ -14,7 +14,7 @@
     <% for(let doctor of doctors){ %>
         <p><%= doctor.username  %></p>
 
-        <a href="/appointments/new<% doctor._id %>">
+        <a href="/appointments/new/<%= doctor._id %>">
             Book Appointment
         </a>
 
