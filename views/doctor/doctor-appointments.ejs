@@ -6,6 +6,7 @@
     <title>Doctor Appointments</title>
 </head>
 <body>
+    <%- include('../partials/navbar') %>
     <h1>My Appointments</h1>
     <% for(let oneAppointment of appointments){%> 
         <h2>Patient: <%= oneAppointment.patient.username %></h2>

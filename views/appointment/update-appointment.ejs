@@ -6,6 +6,7 @@
     <title>Update Appointment</title>
 </head>
 <body>
+    <%- include('../partials/navbar') %>
     <h1>Update Appointment</h1>
     <form action="/appointments/<%=appointment._id%>?_method=PUT" method="post">
         <label for="date">Date:</label>

@@ -6,6 +6,7 @@
     <title>Edit Doctor</title>
 </head>
 <body>
+    <%- include('../partials/navbar') %>
     <h1>Edit Doctor</h1>
     <form action="/admin/doctors/<%=doctor._id%>?_method=PUT" method="post" enctype="multipart/form-data">
         <label for="username">Name:</label>

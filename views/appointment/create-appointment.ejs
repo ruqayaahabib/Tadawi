@@ -6,6 +6,7 @@
     <title>Book Appointment</title>
 </head>
 <body>
+    <%- include('../partials/navbar') %>
     <h1>Book Appointment</h1>
     <form action="/appointments/<%= doctor %>" method="post">
         <label for="date">Date:</label>

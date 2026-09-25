@@ -6,6 +6,7 @@
     <title>Edit Department</title>
 </head>
 <body>
+    <%- include('../partials/navbar') %>
     <h1>Edit Department</h1>
     <form action="/admin/departments/<%=department._id%>?_method=PUT" method="post">
         <label for="name">Name:</label>

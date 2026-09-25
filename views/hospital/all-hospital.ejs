@@ -6,6 +6,7 @@
     <title>All Hospitals</title>
 </head>
 <body>
+    <%- include('../partials/navbar') %>
     <h1>Hospitals</h1>
     <% for(let hospital of hospitals) {%>
         <h2><%= hospital.name  %></h2>

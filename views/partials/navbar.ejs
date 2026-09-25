@@ -1,7 +1,21 @@
 <nav>
     
-    <a href="/">Homepage</a>
     <% if (user){ %>
+        <% if (user.role === "patient"){ %>
+            <a href="/">Homepage</a>
+            <a href="/hospitals">Hospitals</a>
+            <a href="/appointments">Appointments</a>
+        <% } else if (user.role === "doctor"){%>
+            <a href="/doctor">Dashboard</a>
+            <a href="/doctor/appointments">Appointments</a>
+        <% } else if(user.role === "admin") {%>
+            <a href="/admin">Dashboard</a>
+            <a href="/admin/hospitals">Manage Hospitals</a>
+            <a href="/admin/departments">Manage Departments</a>
+            <a href="/admin/doctors">Manage Doctors</a>
+
+        <% } %>
+
     <a href="/auth/sign-out">Logout</a>
 
     <% } else{ %>
