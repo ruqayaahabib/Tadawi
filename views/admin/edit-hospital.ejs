@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Hospital</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
 </head>
 <body>
     <h1>Edit Hospital</h1>
@@ -17,6 +26,13 @@
         <label for="location">Location:</label>
         <input value="<%= hospital.location %>" id="location" name="location" type="text">
 
+        <label for="latitude">Latitude:</label>
+        <input value="<%= hospital.latitude  %>" id="latitude" name="latitude" type="number" step="any">
+
+        <label for="longitude">Longitude:</label>
+        <input value="<%= hospital.longitude  %>" id="longitude" name="longitude" type="number" step="any">
+
+        <div id="map"></div>
 
         <label for="imageUrl">Photo:</label>
         <input id="imageUrl" name="imageUrl" type="file">
@@ -27,5 +43,30 @@
         <button>Update</button>
 
     </form>
+
+    <script>
+        var map = L.map('map').setView([<%= hospital.latitude %>, <%= hospital.longitude %>], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        var marker = L.marker([<%= hospital.latitude %>, <%= hospital.longitude %>]).addTo(map);
+
+        function onMapClick(e) {
+            // alert("You clicked the map at " + e.latlng);
+
+            if (marker) { // check
+                map.removeLayer(marker); // remove old marker
+            }
+            marker = new L.Marker(e.latlng).addTo(map); // set New marker         
+
+            document.getElementById('latitude').value = marker.getLatLng().lat;
+            document.getElementById('longitude').value = marker.getLatLng().lng;
+        }
+
+        map.on('click', onMapClick);
+    </script>
+
 </body>
 </html>

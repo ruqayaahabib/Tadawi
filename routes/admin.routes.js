@@ -31,6 +31,8 @@ router.post("/hospitals", isAdmin,upload.single('imageUrl'), async (req,res)=>{
         name: req.body.name,
         phone: req.body.phone,
         location: req.body.location,
+        latitude: req.body.latitude, 
+        longitude: req.body.longitude,
         imageUrl:`/uploads/${req.file.filename}`
 
     })
@@ -45,10 +47,10 @@ router.get("/hospitals/:hospitalId/edit", isAdmin,async(req,res)=>{
 
 
 router.put("/hospitals/:hospitalId", isAdmin, upload.single('imageUrl') ,async(req,res)=>{
-    const {name, phone, location} = req.body
+    const {name, phone, location, latitude ,longitude} = req.body
 
     const updateHospital = await Hospital.findByIdAndUpdate(req.params.hospitalId,{
-        name, phone, location,imageUrl:`/uploads/${req.file.filename}`
+        name, phone, location, latitude, longitude ,imageUrl:`/uploads/${req.file.filename}`
     })
     res.redirect("/admin/hospitals")
 })
