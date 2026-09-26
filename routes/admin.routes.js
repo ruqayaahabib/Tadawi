@@ -149,6 +149,7 @@ router.get("/doctors/new", isAdmin, async(req,res)=>{
 router.post("/doctors", isAdmin,upload.single('imageUrl'),async (req,res)=>{
     const createDoctor = await User.create({
         username: req.body.username,
+        email: req.body.email,
         password: bcrypt.hashSync(req.body.password,12),
         role: "doctor",
         department: req.body.department,
@@ -170,9 +171,9 @@ router.get("/doctors/:doctorId/edit", isAdmin,async(req,res)=>{
 
 
 router.put("/doctors/:doctorId", isAdmin, upload.single('imageUrl')  ,async(req,res)=>{
-    const {username, department, hospital} = req.body
+    const {username, email,department, hospital} = req.body
     const updateDoctor = await User.findByIdAndUpdate(req.params.doctorId,{
-        username, department, hospital, imageUrl:`/uploads/${req.file.filename}`
+        username, email, department, hospital, imageUrl:`/uploads/${req.file.filename}`
     })
 
     req.session.message="Doctor Updated Successfully!"
