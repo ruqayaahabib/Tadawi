@@ -8,6 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/delete-confirmation.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
 </head>
 <body>
     <%- include('../partials/navbar') %>
@@ -26,6 +30,19 @@
         <button onclick="confirmDelete(event, 'Do you want to delete this hospital?')">Delete</button> </form>
         <% } %>
 
-
+    <% if(message) {%>
+        <script>
+            Toastify({
+            text: "<%= message %>",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#3B82F6",
+                color: "white"
+            }
+            }).showToast();
+        </script>
+    <% } %>
 </body>
+
 </html>

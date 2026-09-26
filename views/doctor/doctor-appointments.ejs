@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Appointments</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 <body>
     <%- include('../partials/navbar') %>
@@ -15,6 +18,19 @@
         <p>Status: <%= oneAppointment.status  %></p>
 
         <a href="/doctor/appointments/<%= oneAppointment._id %>">View Details</a>
+    <% } %>
+
+    <% if(message) {%>
+        <script>
+            Toastify({
+                text: "<%= message %>",
+                duration: 3000,
+                close: true,
+                style: {
+                    background: "#8B5CF6"
+                }
+            }).showToast();
+            </script>
     <% } %>
 </body>
 </html>

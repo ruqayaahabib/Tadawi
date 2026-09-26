@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Appointments</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 <body>
     <%- include('../partials/navbar') %>
@@ -17,5 +20,19 @@
             View Details
         </a>
         <% } %>
+
+
+    <% if(message) {%>
+        <script>
+            Toastify({
+                text: "<%= message %>",
+                duration: 3000,
+                close: true,
+                style: {
+                    background: "#14B8A6"
+                }
+            }).showToast();
+            </script>
+    <% } %>
 </body>
 </html>

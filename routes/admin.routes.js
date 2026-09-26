@@ -15,7 +15,9 @@ router.get("/", isAdmin, async(req,res)=>{
 // Display all hospitals 
 router.get("/hospitals",isAdmin,async(req,res)=>{
     const allHospital = await Hospital.find()
-    res.render("admin/manage-all-hospital.ejs", {hospitals: allHospital})
+    const message = req.session.message
+    req.session.message= null
+    res.render("admin/manage-all-hospital.ejs", {hospitals: allHospital, message: message})
 } )
 
 
@@ -36,6 +38,7 @@ router.post("/hospitals", isAdmin,upload.single('imageUrl'), async (req,res)=>{
         imageUrl:`/uploads/${req.file.filename}`
 
     })
+    req.session.message="Hospital Added Successfully!"
     res.redirect("/admin/hospitals")
 })
 
@@ -52,6 +55,7 @@ router.put("/hospitals/:hospitalId", isAdmin, upload.single('imageUrl') ,async(r
     const updateHospital = await Hospital.findByIdAndUpdate(req.params.hospitalId,{
         name, phone, location, latitude, longitude ,imageUrl:`/uploads/${req.file.filename}`
     })
+    req.session.message="Hospital Updated Successfully!"
     res.redirect("/admin/hospitals")
 })
 
@@ -59,6 +63,7 @@ router.put("/hospitals/:hospitalId", isAdmin, upload.single('imageUrl') ,async(r
 // Delete Hospital
 router.delete("/hospitals/:hospitalId",isAdmin, async (req,res)=>{
     const deleteHospital = await Hospital.findByIdAndDelete(req.params.hospitalId)
+    req.session.message = "Hospital Deleted Successfully!"
     res.redirect("/admin/hospitals")
 })
 
@@ -70,7 +75,9 @@ router.delete("/hospitals/:hospitalId",isAdmin, async (req,res)=>{
 // Display all Departments 
 router.get("/departments",isAdmin,async(req,res)=>{
     const allDepartment = await Department.find().populate("hospital")
-    res.render("admin/manage-all-departments.ejs", {departments: allDepartment})
+    const message = req.session.message
+    req.session.message = null
+    res.render("admin/manage-all-departments.ejs", {departments: allDepartment, message: message})
 } )
 
 
@@ -88,6 +95,7 @@ router.post("/departments", isAdmin, async (req,res)=>{
         hospital: req.body.hospital
 
     })
+    req.session.message="Department Added Successfully!"
     res.redirect("/admin/departments")
 })
 
@@ -106,6 +114,7 @@ router.put("/departments/:departmentId", isAdmin ,async(req,res)=>{
         name, description, hospital
     })
 
+    req.session.message="Department Updated Successfully!"
     res.redirect("/admin/departments")
 })
 
@@ -113,6 +122,7 @@ router.put("/departments/:departmentId", isAdmin ,async(req,res)=>{
 // Delete department
 router.delete("/departments/:departmentId",isAdmin, async (req,res)=>{
     const deleteDepartment = await Department.findByIdAndDelete(req.params.departmentId)
+    req.session.message="Department Deleted Successfully!"
     res.redirect("/admin/departments")
 })
 
@@ -122,7 +132,9 @@ router.delete("/departments/:departmentId",isAdmin, async (req,res)=>{
 // Display all Doctors 
 router.get("/doctors",isAdmin,async(req,res)=>{
     const allDoctors = await User.find({role: "doctor"}).populate("department").populate("hospital")
-    res.render("admin/manage-all-doctors.ejs", {doctors: allDoctors})
+    const message = req.session.message
+    req.session.message=null
+    res.render("admin/manage-all-doctors.ejs", {doctors: allDoctors, message: message})
 } )
 
 
@@ -144,6 +156,7 @@ router.post("/doctors", isAdmin,upload.single('imageUrl'),async (req,res)=>{
         imageUrl:`/uploads/${req.file.filename}`
 
     })
+    req.session.message="Doctor Added Successfully!"
     res.redirect("/admin/doctors")
 })
 
@@ -162,6 +175,8 @@ router.put("/doctors/:doctorId", isAdmin, upload.single('imageUrl')  ,async(req,
         username, department, hospital, imageUrl:`/uploads/${req.file.filename}`
     })
 
+    req.session.message="Doctor Updated Successfully!"
+
     res.redirect("/admin/doctors")
 })
 
@@ -169,6 +184,7 @@ router.put("/doctors/:doctorId", isAdmin, upload.single('imageUrl')  ,async(req,
 // Delete doctor
 router.delete("/doctors/:doctorId",isAdmin, async (req,res)=>{
     const deleteDoctor = await User.findByIdAndDelete(req.params.doctorId)
+    req.session.message="Doctor Deleted Successfully!"
     res.redirect("/admin/doctors")
 })
 

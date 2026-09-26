@@ -14,7 +14,9 @@ router.get("/", isDoctor ,async(req,res)=>{
 // Display all appointments assigend to the loged in doctor 
 router.get("/appointments", isDoctor, async(req,res)=> {
     const allAppointment = await Appointment.find({doctor: req.session.user._id}).populate("patient")
-    res.render("doctor/doctor-appointments.ejs", {appointments : allAppointment})
+    const message = req.session.message
+    req.session.message=null
+    res.render("doctor/doctor-appointments.ejs", {appointments : allAppointment, message: message})
 })
 
 // Display appointment details 
@@ -30,6 +32,7 @@ router.put("/appointments/:appointmentId",isDoctor,async(req,res)=>{
         status: req.body.status
     })
 
+    req.message.session="Appointment Status Updated Successfully!"
     res.redirect("/doctor/appointments")
 
     

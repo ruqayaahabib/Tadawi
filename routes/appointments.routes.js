@@ -7,7 +7,9 @@ const isSignedIn = require("../middleware/is-signed-in")
 // Display all patient appointments 
 router.get("/", isSignedIn,async(req,res)=>{
     const allAppointment = await Appointment.find({patient: req.session.user._id})
-    res.render("appointment/all-appointment.ejs", {appointments: allAppointment})
+    const message = req.session.message
+    req.session.message= null
+    res.render("appointment/all-appointment.ejs", {appointments: allAppointment, message: message})
 })
 
 // Create a new appointment 
@@ -24,6 +26,7 @@ router.post("/:doctorId", isSignedIn, async (req,res)=>{
         time: req.body.time,
         reason: req.body.reason,
     })
+    req.session.message="Appointment Booked Successfully!"
     res.redirect("/appointments")
 })
 
@@ -44,6 +47,7 @@ router.put("/:appointmentId", isSignedIn,async(req,res)=>{
     const updateAppointment = await Appointment.findByIdAndUpdate(req.params.appointmentId,{
         doctor, date, time, reason, 
     })
+    req.session.message="Appointment Updated Successfully!"
 
     res.redirect("/appointments")
 })
@@ -51,6 +55,7 @@ router.put("/:appointmentId", isSignedIn,async(req,res)=>{
 // Cancel appointment 
 router.delete("/:appointmentId",isSignedIn, async (req,res)=>{
     const deletedAppointment = await Appointment.findByIdAndDelete(req.params.appointmentId)
+    req.session.message="Appointment Cancelled Successfully!"
     res.redirect("/appointments")
 })
 
