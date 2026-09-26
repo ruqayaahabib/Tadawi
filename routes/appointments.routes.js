@@ -43,9 +43,9 @@ router.get("/:appointmentId/edit", isSignedIn,async(req,res)=>{
 })
 
 router.put("/:appointmentId", isSignedIn,async(req,res)=>{
-    const {doctor, date, time,reason} = req.body
+    const {date, time,reason} = req.body
     const updateAppointment = await Appointment.findByIdAndUpdate(req.params.appointmentId,{
-        doctor, date, time, reason, 
+        date, time, reason, 
     })
     req.session.message="Appointment Updated Successfully!"
 
