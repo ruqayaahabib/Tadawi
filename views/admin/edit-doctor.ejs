@@ -19,7 +19,7 @@
         <select name="department" id="department">
             <% for(let oneDepartment of departments){ %>
                 <option value="<%= oneDepartment._id  %>">
-                    <%= oneDepartment.name  %>
+                    <%= oneDepartment.name  %> - <%= oneDepartment.hospital.name  %>
                 </option>
                 <% } %>
         </select>

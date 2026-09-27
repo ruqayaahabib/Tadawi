@@ -140,7 +140,7 @@ router.get("/doctors",isAdmin,async(req,res)=>{
 
 // Create a new Doctor 
 router.get("/doctors/new", isAdmin, async(req,res)=>{
-    const allDepartments = await Department.find()
+    const allDepartments = await Department.find().populate("hospital")
     const allHospital = await Hospital.find()
     res.render("admin/create-doctor.ejs", {departments: allDepartments, hospitals: allHospital})
 })
@@ -164,7 +164,7 @@ router.post("/doctors", isAdmin,upload.single('imageUrl'),async (req,res)=>{
 // edit doctor
 router.get("/doctors/:doctorId/edit", isAdmin,async(req,res)=>{
     const foundDoctor = await User.findById(req.params.doctorId)
-    const allDepartment = await Department.find()
+    const allDepartment = await Department.find().populate("hospital")
     const allHospital = await Hospital.find()
     res.render("admin/edit-doctor.ejs", {doctor: foundDoctor, departments: allDepartment, hospitals: allHospital})
 })
