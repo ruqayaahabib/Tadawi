@@ -53,13 +53,18 @@ router.get("/hospitals/:hospitalId/edit", isAdmin,async(req,res)=>{
 router.put("/hospitals/:hospitalId", isAdmin, upload.single('imageUrl') ,async(req,res)=>{
     const {name, phone, location, description, latitude ,longitude} = req.body
 
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null
     const updateHospital = await Hospital.findByIdAndUpdate(req.params.hospitalId,{
-        name, phone, location, description,latitude, longitude ,imageUrl:`/uploads/${req.file.filename}`
+        name, phone, location, description,latitude, longitude ,imageUrl
     })
     req.session.message="Hospital Updated Successfully!"
     res.redirect("/admin/hospitals")
 })
 
+router.get('/departments/get-hospital/:hospital',async(req,res)=>{
+    const foundDepartments = await Department.find({hospital:req.params.hospital})
+    res.json(foundDepartments)
+})
 
 // Delete Hospital
 router.delete("/hospitals/:hospitalId",isAdmin, async (req,res)=>{
