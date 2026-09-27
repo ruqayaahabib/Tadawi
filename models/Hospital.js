@@ -20,6 +20,9 @@ const hospitalSchema = new mongoose.Schema({
     },
     longitude:{
         type: Number
+    },
+    description: {
+        type: String
     }
 }, {timestamps: true})
 

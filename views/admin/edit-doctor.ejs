@@ -15,6 +15,9 @@
         <label for="email">Email: </label>
         <input value="<%= doctor.email %>" type="email" name="email" id="email">
 
+        <label for="bio">Bio:</label>
+        <input value="<%= doctor.bio %>" type="text" name="bio" id="bio">
+
         <label for="department">Department:</label>
         <select name="department" id="department">
             <% for(let oneDepartment of departments){ %>

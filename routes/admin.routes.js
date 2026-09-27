@@ -33,6 +33,7 @@ router.post("/hospitals", isAdmin,upload.single('imageUrl'), async (req,res)=>{
         name: req.body.name,
         phone: req.body.phone,
         location: req.body.location,
+        description: req.body.description,
         latitude: req.body.latitude, 
         longitude: req.body.longitude,
         imageUrl:`/uploads/${req.file.filename}`
@@ -50,10 +51,10 @@ router.get("/hospitals/:hospitalId/edit", isAdmin,async(req,res)=>{
 
 
 router.put("/hospitals/:hospitalId", isAdmin, upload.single('imageUrl') ,async(req,res)=>{
-    const {name, phone, location, latitude ,longitude} = req.body
+    const {name, phone, location, description, latitude ,longitude} = req.body
 
     const updateHospital = await Hospital.findByIdAndUpdate(req.params.hospitalId,{
-        name, phone, location, latitude, longitude ,imageUrl:`/uploads/${req.file.filename}`
+        name, phone, location, description,latitude, longitude ,imageUrl:`/uploads/${req.file.filename}`
     })
     req.session.message="Hospital Updated Successfully!"
     res.redirect("/admin/hospitals")
@@ -150,6 +151,7 @@ router.post("/doctors", isAdmin,upload.single('imageUrl'),async (req,res)=>{
     const createDoctor = await User.create({
         username: req.body.username,
         email: req.body.email,
+        bio: req.body.bio,
         password: bcrypt.hashSync(req.body.password,12),
         role: "doctor",
         department: req.body.department,
@@ -171,9 +173,9 @@ router.get("/doctors/:doctorId/edit", isAdmin,async(req,res)=>{
 
 
 router.put("/doctors/:doctorId", isAdmin, upload.single('imageUrl')  ,async(req,res)=>{
-    const {username, email,department, hospital} = req.body
+    const {username, email, bio, department, hospital} = req.body
     const updateDoctor = await User.findByIdAndUpdate(req.params.doctorId,{
-        username, email, department, hospital, imageUrl:`/uploads/${req.file.filename}`
+        username, email, bio, department, hospital, imageUrl:`/uploads/${req.file.filename}`
     })
 
     req.session.message="Doctor Updated Successfully!"
