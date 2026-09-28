@@ -25,6 +25,7 @@ const doctorRouter = require("./routes/doctor.routes.js")
 
 // Middleware
 app.use(express.static('public')) // my app will serve all static files from public folder
+app.use(express.static(__dirname + "/node_modules/bootstrap-icons"))
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'))
 app.use(methodOverride('_method'))

@@ -4,10 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
-    <%- include('../partials/navbar') %>
-    <h1>Welcome Doctor to Dashboard</h1>
-    <a href="/doctor/appointments">Manage Assigned Appointmetns</a>
+    <%- include('../partials/doctor-sidebar') %>
+    <div class="dashboard-content">
+        <div class="dashboard-heading">
+            <h1>Doctor Overview</h1>
+            <p>View and manage your appointments.</p>
+        </div>
+
+        <div class="dashboard-cards">
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="bi bi-calendar"></i>
+                </div>
+
+            <div class="card-info">
+                <p>Total Appointments</p>
+                <h2><%= totalAppointments %></h2>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="card-icon">
+                <i class="bi bi-clock"></i>
+            </div>
+
+            <div class="card-info">
+                <p>Pending</p>
+                <h2><%= pendingAppointments %></h2>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="card-icon">
+                <i class="bi bi-calendar-check"></i>
+            </div>
+
+            <div class="card-info">
+                <p>Confirmed</p>
+                <h2><%= confirmedAppointments %></h2>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="card-icon">
+                <i class="bi bi-check-circle"></i>
+            </div>
+
+            <div class="card-info">
+                <p>Completed</p>
+                <h2><%= completedAppointments %></h2>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+
 </body>
 </html>

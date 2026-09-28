@@ -4,13 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
 </head>
 <body>
-    <%- include('../partials/navbar') %>
-    <h1>Admin Dashboard</h1>
-    <a href="/admin/hospitals">Manage Hospitals</a>
-    <a href="/admin/departments">Manage Departments</a>
-    <a href="/admin/doctors">Manage Doctors</a>
+    <%- include('../partials/sidebar') %>
+    <div class="dashboard-content">
+        <div class="dashboard-heading">
+            <h1>Admin Overview</h1>
+            <p>Manage hospitals, departments, doctors and appointments.</p>
+        </div>
+        <div class="dashboard-cards">
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="bi bi-hospital"></i>
+                </div>
+
+            <div class="card-info">
+                <p>Total Hospitals</p>
+                <h2><%= totalHospitals %></h2>
+            </div>
+        </div>
+
+
+        <div class="dashboard-card">
+            <div class="card-icon">
+            <i class="bi bi-grid"></i>
+            </div>
+
+            <div class="card-info">
+                <p>Total Departments</p>
+                <h2><%= totalDepartments %></h2>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="card-icon">
+                <i class="bi bi-person-badge"></i>
+            </div>
+
+            <div class="card-info">
+                <p>Total Doctors</p>
+                <h2><%= totalDoctors %></h2>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="card-icon">
+                <i class="bi bi-calendar-check"></i>
+            </div>
+            <div class="card-info">
+                <p>Total Appointments</p>
+                <h2><%= totalAppointments %></h2>
+            </div>
+        </div>
+        </div>
+    </div>
 
 </body>
 </html>

@@ -7,7 +7,12 @@ const isDoctor = require("../middleware/is-doctor")
 
 // Doctor Dashboard 
 router.get("/", isDoctor ,async(req,res)=>{
-    res.render("doctor/doctor-dash.ejs")
+    const totalAppointments = await Appointment.countDocuments({doctor: req.session.user._id})
+    const pendingAppointments = await Appointment.countDocuments({doctor: req.session.user._id, status:"pending"})
+    const completedAppointments = await Appointment.countDocuments({doctor: req.session.user._id, status:"completed"})
+    const confirmedAppointments = await Appointment.countDocuments({doctor: req.session.user._id, status:"confirmed"})
+
+    res.render("doctor/doctor-dash.ejs", {totalAppointments, pendingAppointments, completedAppointments, confirmedAppointments})
 })
 
 
@@ -32,7 +37,7 @@ router.put("/appointments/:appointmentId",isDoctor,async(req,res)=>{
         status: req.body.status
     })
 
-    req.message.session="Appointment Status Updated Successfully!"
+    req.session.message="Appointment Status Updated Successfully!"
     res.redirect("/doctor/appointments")
 
     

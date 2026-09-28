@@ -1,0 +1,147 @@
+body {
+    margin: 0;
+    background-color: #f4fbfa;
+}
+
+.sidebar {
+    width: 275px;
+    height: 100vh;
+    background-color: #0f766e;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 30px 25px;
+}
+
+.sidebar-logo img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.sidebar-logo p {
+    margin: 0;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px 25px;
+}
+
+.sidebar-links a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    white-space: nowrap;
+}
+
+.sidebar-links a:hover {
+    background-color: #138f85;
+}
+
+.sidebar-links i {
+    font-size: 22px;
+    width: 25px;
+    text-align: center;
+}
+
+.sidebar-logout {
+    margin-top: auto;
+    padding: 30px 40px;
+}
+
+.sidebar-logout a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    white-space: nowrap;
+}
+
+.sidebar-logout i {
+    font-size: 22px;
+    width: 25px;
+    text-align: center;
+}
+
+.dashboard-content {
+    margin-left: 275px;
+    min-height: 100vh;
+    padding: 60px 55px;
+}
+
+.dashboard-heading h1 {
+    margin: 0;
+    color: #102a3a;
+    font-size: 42px;
+}
+
+.dashboard-heading p {
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 18px;
+}
+
+.dashboard-cards {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.dashboard-card {
+    background-color: white;
+    border: 1px solid #dcebea;
+    border-radius: 15px;
+    padding: 25px;
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.card-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #e1f5f1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-icon i {
+    color: #0f766e;
+    font-size: 26px;
+}
+
+.card-info p {
+    margin: 0;
+    color: #64748b;
+    font-size: 15px;
+}
+
+.card-info h2 {
+    margin: 8px 0 0;
+    color: #102a3a;
+    font-size: 32px;
+}

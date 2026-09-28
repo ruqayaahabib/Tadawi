@@ -5,11 +5,17 @@ const isAdmin = require("../middleware/is-admin")
 const Hospital = require("../models/Hospital")
 const Department = require("../models/Department")
 const User = require("../models/User")
+const Appointment = require("../models/Appointment")
 const bcrypt = require('bcrypt')
 const upload = require('../middleware/photo-upload')
 
 router.get("/", isAdmin, async(req,res)=>{
-    res.render("admin/admin-dash.ejs")
+    const totalHospitals = await Hospital.countDocuments()
+    const totalDepartments = await Department.countDocuments()
+    const totalDoctors = await User.countDocuments({role: "doctor"})
+    const totalAppointments = await Appointment.countDocuments()
+
+    res.render("admin/admin-dash.ejs", {totalHospitals,totalDepartments,totalDoctors, totalAppointments})
 })
 
 // Display all hospitals 
