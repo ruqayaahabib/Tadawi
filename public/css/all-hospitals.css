@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    background-color: #f4fbfa;
+    font-family: serif;
+
+}
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    height: 100%;
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    color: #102a3a;
+    font-size: 20px;
+}
+
+.card-text {
+    color: #64748b;
+}
+
+
+.btn-primary {
+    background-color: #0f766e;
+    border-color: #0f766e;
+    border-radius: 25px;
+    padding: 10px 20px;
+}
+.btn-primary:hover {
+    background-color: #138f85;
+    border-color: #138f85;
+}
+.btn-primary i {
+    margin-left: 10px;
+}
+
+.hospitals-header {
+    margin-bottom: 30px;
+}
+
+.hospitals-header h1 {
+    margin: 0;
+    color: #102a3a;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.hospitals-header p {
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 17px;
+}
+
+.hospital-search {
+    background-color: white;
+    border-radius: 20px;
+    padding: 12px 20px;
+    margin: 5px 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.hospital-search i {
+    color: #0f766e;
+    font-size: 20px;
+}
+
+.hospital-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.hospital-search button {
+    background-color: #0f766e;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 35px;
+}
+
+.hospital-search button:hover {
+    background-color: #138f85;
+}
