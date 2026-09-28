@@ -4,20 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/auth.css">
   </head>
   <body>
     <%- include('../partials/navbar') %>
-    <h1>Create a new account!</h1>
+    <div class="auth-page">
+ 
+
+    <div class="auth-form">
     <form action="/auth/sign-up" method="post">
+      <h1>Create your account</h1>
+      <p>Start managing your healthcare with Tadawi</p>
       <label for="username">Username:</label>
-      <input type="text" name="username" id="username" />
+      <input type="text" name="username" id="username" placeholder="Enter your username" />
       <label for="email">Email: </label>
-      <input type="email" name="email" id="email">
+      <input type="email" name="email" id="email" placeholder="Enter your email">
       <label for="password">Password:</label>
-      <input type="password" name="password" id="password" />
+      <input type="password" name="password" id="password" placeholder="Enter your password" />
       <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" name="confirmPassword" id="confirmPassword" />
+      <input type="password" name="confirmPassword" id="confirmPassword"  placeholder="Confirm your password" />
       <button type="submit">Sign up</button>
-    </form>
+    
+      <div class="auth-link"><p>Already have an account? <a href="/auth/sign-in">Login</a></p></div>
+    </div>
+    </form> </div>
+
   </body>
 </html>
