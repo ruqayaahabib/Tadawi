@@ -1,0 +1,104 @@
+.manage-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.manage-header h1 {
+    margin: 0;
+    color: #102a3a;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.manage-header p {
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 18px;
+}
+
+.add-button {
+    background-color: #0f766e;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+}
+
+.add-button:hover {
+    background-color: #138f85;
+    color: white;
+}
+
+.add-button i {
+    margin-right: 5px;
+}
+
+
+.manage-table {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.manage-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.manage-table th {
+    text-align: left;
+    padding: 18px 20px;
+    background-color: #f8fafc;
+    color: #102a3a;
+    font-weight: bold;
+}
+
+.manage-table td {
+    padding: 16px 20px;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    vertical-align: middle;
+}
+
+
+.manage-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.manage-actions form {
+    margin: 0;
+}
+
+.edit-button,
+.delete-button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.edit-button {
+    background-color: #0f766e;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #138f85;
+    color: white;
+}
+
+.delete-button {
+    background-color: white;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.delete-button:hover {
+    background-color: #dc3545;
+    color: white;
+}

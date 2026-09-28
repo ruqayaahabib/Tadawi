@@ -11,8 +11,8 @@ router.get("/", isDoctor ,async(req,res)=>{
     const pendingAppointments = await Appointment.countDocuments({doctor: req.session.user._id, status:"pending"})
     const completedAppointments = await Appointment.countDocuments({doctor: req.session.user._id, status:"completed"})
     const confirmedAppointments = await Appointment.countDocuments({doctor: req.session.user._id, status:"confirmed"})
-
-    res.render("doctor/doctor-dash.ejs", {totalAppointments, pendingAppointments, completedAppointments, confirmedAppointments})
+    const upcomingAppointments = await Appointment.find({doctor:req.session.user._id, date: { $gte: new Date() }}).populate("patient").sort({date:1}).limit(5)
+    res.render("doctor/doctor-dash.ejs", {totalAppointments, pendingAppointments, completedAppointments, confirmedAppointments, upcomingAppointments})
 })
 
 

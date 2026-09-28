@@ -145,3 +145,93 @@ body {
     color: #102a3a;
     font-size: 32px;
 }
+
+
+.chart-card {
+    background-color: white;
+    border: 1px solid #dcebea;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.chart-header h2 {
+    margin: 0;
+    color: #102a3a;
+    font-size: 22px;
+}
+
+.chart-container {
+    height: 350px;
+}
+
+
+.export-button {
+    background-color: #0f766e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+.export-button i {
+    margin-right: 6px;
+}
+
+.export-button:hover {
+    background-color: #138f85;
+}
+
+
+.appointments-table-card {
+    background-color: white;
+    border: 1px solid #dcebea;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.appointments-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.appointments-table-header h2 {
+    margin: 0;
+    color: #102a3a;
+    font-size: 22px;
+}
+
+.appointments-table-header a {
+    color: #0f766e;
+    text-decoration: none;
+}
+
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.appointments-table th,
+.appointments-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #dcebea;
+}
+
+.appointments-table th {
+    color: #64748b;
+}
+
+.appointments-table td {
+    color: #102a3a;
+}

@@ -6,12 +6,13 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <%- include('../partials/sidebar') %>
     <div class="dashboard-content">
         <div class="dashboard-heading">
-            <h1>Admin Overview</h1>
+            <h1>Admin Dashboard</h1>
             <p>Manage hospitals, departments, doctors and appointments.</p>
         </div>
         <div class="dashboard-cards">
@@ -59,7 +60,51 @@
             </div>
         </div>
         </div>
+
+        <div class="chart-card">
+
+            <div class="chart-header">
+                <h2>Top 5 Hospitals by Patient Appointments</h2>
+                <button class="export-button">
+                    <i class="bi bi-file-earmark-pdf"></i>
+                    Export to PDF
+                </button>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="hospitalChart"></canvas>
+            </div>
+        </div>
     </div>
 
+    <script>
+    const ctx = document.querySelector('#hospitalChart')
+
+    new Chart(ctx, {
+        type: 'bar',
+
+        data: {
+            labels: <%- [Object.keys(topHospitals)] %>,
+
+            datasets: [{
+                label: 'Appointments',
+                data: <%- [Object.values(topHospitals)] %>,
+                backgroundColor: '#5BBFB5',
+                borderRadius: 6
+            }]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    })
+    </script>
 </body>
 </html>

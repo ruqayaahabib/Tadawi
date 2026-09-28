@@ -15,7 +15,26 @@ router.get("/", isAdmin, async(req,res)=>{
     const totalDoctors = await User.countDocuments({role: "doctor"})
     const totalAppointments = await Appointment.countDocuments()
 
-    res.render("admin/admin-dash.ejs", {totalHospitals,totalDepartments,totalDoctors, totalAppointments})
+    const allAppointments = await Appointment.find().populate({
+        path:'doctor',
+        populate:{
+            path:'hospital'
+        }
+    })
+
+
+    const topHospitals = {}
+
+    allAppointments.forEach((oneAppointment)=>{
+        const {name} = oneAppointment.doctor.hospital
+        if(topHospitals[name]) topHospitals[name]+= 1
+        else topHospitals[name] = 1
+    })
+    console.log(allAppointments)
+    console.log(Object.keys(allAppointments))
+
+
+    res.render("admin/admin-dash.ejs", {totalHospitals,totalDepartments,totalDoctors, totalAppointments, topHospitals})
 })
 
 // Display all hospitals 

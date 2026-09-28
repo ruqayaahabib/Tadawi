@@ -62,6 +62,42 @@
 
         </div>
 
+        <div class="appointments-table-card">
+
+            <div class="appointments-table-header">
+                <h2>Upcoming Appointments</h2>
+
+                <a href="/doctor/appointments">
+                    View All
+                <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+        <table class="appointments-table">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% for(let appointment of upcomingAppointments) { %>
+                    <tr>
+                        <td><%= appointment.patient.username %></td>
+                        <td><%= appointment.date.toDateString() %></td>
+                        <td><%= appointment.time %></td>
+                        <td><%= appointment.status %></td>
+                    </tr> 
+                <% } %>
+
+            </tbody>
+        </table>
+
+        </div>
+
     </div>
 
 </body>
