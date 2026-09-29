@@ -71,7 +71,8 @@ router.post("/hospitals",isSignedIn, isAdmin,upload.single('imageUrl'), async (r
 
     })
     req.session.message="Hospital Added Successfully!"
-    res.redirect("/admin/hospitals")
+    req.session.save(() =>{
+    res.redirect("/admin/hospitals")})
 })
 
 // edit hospital
@@ -89,7 +90,8 @@ router.put("/hospitals/:hospitalId",isSignedIn, isAdmin, upload.single('imageUrl
         name, phone, location, description,latitude, longitude ,imageUrl
     })
     req.session.message="Hospital Updated Successfully!"
-    res.redirect("/admin/hospitals")
+    req.session.save(() =>{
+    res.redirect("/admin/hospitals")})
 })
 
 router.get('/departments/get-hospital/:hospital',isSignedIn,isAdmin, async(req,res)=>{
@@ -101,7 +103,8 @@ router.get('/departments/get-hospital/:hospital',isSignedIn,isAdmin, async(req,r
 router.delete("/hospitals/:hospitalId",isSignedIn, isAdmin, async (req,res)=>{
     const deleteHospital = await Hospital.findByIdAndDelete(req.params.hospitalId)
     req.session.message = "Hospital Deleted Successfully!"
-    res.redirect("/admin/hospitals")
+    req.session.save(() =>{
+    res.redirect("/admin/hospitals")})
 })
 
 
@@ -133,7 +136,8 @@ router.post("/departments",isSignedIn, isAdmin, async (req,res)=>{
 
     })
     req.session.message="Department Added Successfully!"
-    res.redirect("/admin/departments")
+    req.session.save(() =>{
+    res.redirect("/admin/departments")})
 })
 
 // edit department
@@ -152,7 +156,8 @@ router.put("/departments/:departmentId",isSignedIn, isAdmin ,async(req,res)=>{
     })
 
     req.session.message="Department Updated Successfully!"
-    res.redirect("/admin/departments")
+    req.session.save(() =>{
+    res.redirect("/admin/departments")})
 })
 
 
@@ -160,7 +165,8 @@ router.put("/departments/:departmentId",isSignedIn, isAdmin ,async(req,res)=>{
 router.delete("/departments/:departmentId",isSignedIn,isAdmin, async (req,res)=>{
     const deleteDepartment = await Department.findByIdAndDelete(req.params.departmentId)
     req.session.message="Department Deleted Successfully!"
-    res.redirect("/admin/departments")
+    req.session.save(() =>{
+    res.redirect("/admin/departments")})
 })
 
 
@@ -196,7 +202,8 @@ router.post("/doctors",isSignedIn, isAdmin,upload.single('imageUrl'),async (req,
 
     })
     req.session.message="Doctor Added Successfully!"
-    res.redirect("/admin/doctors")
+    req.session.save(() =>{
+    res.redirect("/admin/doctors")})
 })
 
 // edit doctor
@@ -216,8 +223,8 @@ router.put("/doctors/:doctorId",isSignedIn, isAdmin, upload.single('imageUrl')  
     })
 
     req.session.message="Doctor Updated Successfully!"
-
-    res.redirect("/admin/doctors")
+    req.session.save(() =>{
+    res.redirect("/admin/doctors")})
 })
 
 
@@ -225,7 +232,8 @@ router.put("/doctors/:doctorId",isSignedIn, isAdmin, upload.single('imageUrl')  
 router.delete("/doctors/:doctorId",isSignedIn,isAdmin, async (req,res)=>{
     const deleteDoctor = await User.findByIdAndDelete(req.params.doctorId)
     req.session.message="Doctor Deleted Successfully!"
-    res.redirect("/admin/doctors")
+    req.session.save(() => {
+    res.redirect("/admin/doctors")})
 })
 
 
