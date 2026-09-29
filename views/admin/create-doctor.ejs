@@ -4,48 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Doctor</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/hospital-form.css">
     <script defer src="/js/create-doctor.js"></script>
 </head>
 <body>
 
-    <%- include('../partials/navbar') %>
-    <h1>Add New Doctor</h1>
-        <form action="/admin/doctors" method="post" enctype="multipart/form-data">
-        <label for="username">Name:</label>
-        <input id="username" name="username" type="text">
+    <%- include('../partials/sidebar') %>
+    <div class="dashboard-content">
+        <div class="form-header">
+            <h1>Add New Doctor</h1>
+            <p>Add a new doctor and assign them to a hospital and department.</p>
 
-        <label for="email">Email: </label>
-        <input type="email" name="email" id="email">
+        </div>
 
-        <label for="password">Password:</label>
-        <input id="password" name="password" type="password">
+        <form class="hospital-form" action="/admin/doctors" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="username">Name:</label>
+                    <input id="username" name="username" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email: </label>
+                    <input type="email" name="email" id="email">
+                </div>
+            </div>
 
-        <label for="bio">Bio:</label>
-        <input type="text" name="bio" id="bio">
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input id="password" name="password" type="password">
+            </div>
 
+            <div class="form-group">
+                <label for="bio">Bio:</label>
+                <input type="text" name="bio" id="bio">
+            </div>
 
-        <label for="department">Department:</label>
-        <select name="department" id="department">
-            <option value="">---------</option>
-        </select>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="hospital">Hospital:</label>
+                    <select class="form-select" name="hospital" id="hospital">
+                        <% for(let oneHospital of hospitals){ %>
+                            <option value="<%= oneHospital._id  %>">
+                                <%= oneHospital.name  %>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
 
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <select class="form-select" name="department" id="department">
+                    <option value="">---------</option>
+                </select>
+            </div>
+         </div>
 
+            <div class="form-group">
+                <label for="imageUrl">Photo:</label>
+                <input id="imageUrl" name="imageUrl" type="file">
+            </div>
 
-        <label for="hospital">Hospital:</label>
-        <select name="hospital" id="hospital">
-            <% for(let oneHospital of hospitals){ %>
-                <option value="<%= oneHospital._id  %>">
-                    <%= oneHospital.name  %>
-                </option>
-                <% } %>
-        </select>
-
-        <label for="imageUrl">Photo:</label>
-        <input id="imageUrl" name="imageUrl" type="file">
-
-        <button>Add</button> 
+        <button class="submit-button">Add</button> 
     
     </form>
-
+</div>
 </body>
 </html>

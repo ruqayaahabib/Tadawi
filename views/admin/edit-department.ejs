@@ -4,28 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Department</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/hospital-form.css">
 </head>
 <body>
-    <%- include('../partials/navbar') %>
-    <h1>Edit Department</h1>
-    <form action="/admin/departments/<%=department._id%>?_method=PUT" method="post">
-        <label for="name">Name:</label>
-        <input value="<%= department.name  %>" id="name" name="name" type="text">
+    <%- include('../partials/sidebar') %>
+    <div class="dashboard-content">
+        <div class="form-header">
+            <h1>Edit Department</h1>
+            <p>Update the department and its information.</p>
+        </div>
 
-        <label for="description">Description:</label>
-        <input value="<%= department.description  %>" id="description" name="description" type="text">
+        <form class="hospital-form" action="/admin/departments/<%=department._id%>?_method=PUT" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input value="<%= department.name  %>" id="name" name="name" type="text">
+            </div>
 
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input value="<%= department.description  %>" id="description" name="description" type="text">
+            </div>
+        
+            <div class="form-group">
+                <label for="hospital">Hospital:</label>
+                <select class="form-select" id="hospital" name="hospital">
+                    <%for (let oneHospital of hospitals){%>
+                        <option value="<%= oneHospital._id %>">
+                            <%= oneHospital.name%>
 
+                         </option>
+                    <%}%> 
+                </select>
+            </div>
 
-        <label for="hospital">Hospital:</label>
-        <select id="hospital" name="hospital">
-        <%for (let oneHospital of hospitals){%>
-        <option value="<%= oneHospital._id %>">
-            <%= oneHospital.name%>
-
-        </option>
-        <%}%> </select>
-
-        <button>Update</button> </form>
+        <button class="submit-button">Update</button>
+     </form>
+</div>
 </body>
 </html>

@@ -4,24 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Appointment Details</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/doctor-appointment-details.css">
 </head>
 <body>
-    <%- include('../partials/navbar') %>
-    <h1>Appointment Details</h1>
-    <h2>Patient: <%= appointment.patient.username %></h2>
-    <p>Date: <%= appointment.date %></p>
-    <p>Time: <%= appointment.time  %></p>
-    <p>Reason: <%= appointment.reason %></p>
+    <%- include('../partials/doctor-sidebar') %>
+    <div class="dashboard-content">
+        <div class="appointment-header">
+            <h1>Appointment Details</h1>
+        </div>
 
-    <h2>Update Status</h2>
-    <form action="/doctor/appointments/<%= appointment._id %>?_method=PUT" method="POST">
-        <label for="status">Status:</label>
-        <select name="status" id="status">
-            <option value="pending">Pending</option>
-            <option value="confirmed">Confirmed</option>
-            <option value="declined">Declined</option>
-            <option value="completed">Completed</option> </select>
-        <button>Update Status</button>
-    </form>
+        <div class="appointment-details">
+            <h2>Appointment Information</h2>
+            <div class="detail">
+                <span>Patient</span>
+                <h2><%= appointment.patient.username %></h2>
+            </div>
+            <div class="detail">
+                <span>Date</span>
+                <p><%= appointment.date %></p>
+            </div>
+            <div class="detail">
+                <span>Time</span>
+                <p><%= appointment.time  %></p>
+            </div>
+            <div class="detail">
+                <span>Reason</span>
+                <p><%= appointment.reason %></p>
+            </div>
+
+        </div>
+
+        <div class="status-section">
+            <h2>Update Status</h2>
+                <form action="/doctor/appointments/<%= appointment._id %>?_method=PUT" method="POST">
+                    <label for="status">Status:</label>
+                    <select name="status" id="status" class="form-select">
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="declined">Declined</option>
+                        <option value="completed">Completed</option> </select>
+                    <button class="update-button">Update Status</button>
+                </form>
+
+
+        </div>
+</div>
+
 </body>
 </html>
