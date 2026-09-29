@@ -61,14 +61,24 @@ router.post("/sign-in", async (req, res) => {
     _id: userInDatabase._id,
     role:userInDatabase.role
   };
+  req.session.save(() => {
+    if (userInDatabase.role === "admin") {
+      res.redirect("/admin");
 
-  res.redirect("/");
+    } else if (userInDatabase.role === "doctor") {
+      res.redirect("/doctor");
+    } else {
+      res.redirect("/");
+    }
+  });
 });
 
 
 router.get("/sign-out", (req, res) => {
-  req.session.destroy();
-  res.redirect("/");
+  req.session.destroy(()=>{
+    res.redirect("/");
+  });
+
 });
 
 

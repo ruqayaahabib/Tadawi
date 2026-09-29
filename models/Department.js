@@ -11,7 +11,8 @@ const departmentSchema = new mongoose.Schema({
     },
     hospital:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Hospital"
+        ref: "Hospital",
+        required: true
     }
 
 },{timestamps:true})

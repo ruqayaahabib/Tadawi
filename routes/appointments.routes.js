@@ -2,10 +2,12 @@ const express = require("express")
 const router = express.Router()
 const Appointment = require("../models/Appointment")
 const isSignedIn = require("../middleware/is-signed-in")
+const isPatient = require("../middleware/is-patient")
+
 
 
 // Display all patient appointments 
-router.get("/", isSignedIn,async(req,res)=>{
+router.get("/", isSignedIn,isPatient,async(req,res)=>{
     const allAppointment = await Appointment.find({patient: req.session.user._id})
     const message = req.session.message
     req.session.message= null
@@ -13,12 +15,12 @@ router.get("/", isSignedIn,async(req,res)=>{
 })
 
 // Create a new appointment 
-router.get("/new/:doctorId", isSignedIn,(req,res)=>{
+router.get("/new/:doctorId", isSignedIn,isPatient,(req,res)=>{
     res.render("appointment/create-appointment.ejs", {doctor: req.params.doctorId})
 })
 
 //Book an appointment 
-router.post("/:doctorId", isSignedIn, async (req,res)=>{
+router.post("/:doctorId", isSignedIn,isPatient, async (req,res)=>{
     const bookAppointment = await Appointment.create({
         patient: req.session.user._id,
         doctor: req.params.doctorId,
@@ -31,30 +33,37 @@ router.post("/:doctorId", isSignedIn, async (req,res)=>{
 })
 
 // Display appointment deatails 
-router.get("/:appointmentId", isSignedIn,async(req,res)=>{
-    const foundAppointment = await Appointment.findById(req.params.appointmentId)
+router.get("/:appointmentId", isSignedIn,isPatient,async(req,res)=>{
+    const foundAppointment = await Appointment.findOne({
+        _id: req.params.appointmentId, patient: req.session.user._id
+    })
     res.render("appointment/appointment-details.ejs", {appointment: foundAppointment})
 })
 
 // Update appointment 
-router.get("/:appointmentId/edit", isSignedIn,async(req,res)=>{
-    const foundAppointment = await Appointment.findById(req.params.appointmentId)
+router.get("/:appointmentId/edit", isSignedIn,isPatient,async(req,res)=>{
+    const foundAppointment = await Appointment.findOne({
+        _id: req.params.appointmentId,
+        patient: req.session.user._id
+    })
     res.render("appointment/update-appointment.ejs", {appointment: foundAppointment})
 })
 
-router.put("/:appointmentId", isSignedIn,async(req,res)=>{
+router.put("/:appointmentId", isSignedIn,isPatient,async(req,res)=>{
     const {date, time,reason} = req.body
-    const updateAppointment = await Appointment.findByIdAndUpdate(req.params.appointmentId,{
-        date, time, reason, 
-    })
+    const updateAppointment = await Appointment.findOneAndUpdate({
+        _id: req.params.appointmentId, patient: req.session.user._id},
+        { date, time, reason})
     req.session.message="Appointment Updated Successfully!"
 
     res.redirect("/appointments")
 })
 
 // Cancel appointment 
-router.delete("/:appointmentId",isSignedIn, async (req,res)=>{
-    const deletedAppointment = await Appointment.findByIdAndDelete(req.params.appointmentId)
+router.delete("/:appointmentId",isSignedIn, isPatient, async (req,res)=>{
+    const deletedAppointment = await Appointment.findOneAndDelete({
+        _id: req.params.appointmentId, patient: req.session.user._id
+    })
     req.session.message="Appointment Cancelled Successfully!"
     res.redirect("/appointments")
 })

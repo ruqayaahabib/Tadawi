@@ -8,37 +8,43 @@ const User = require("../models/User")
 const Appointment = require("../models/Appointment")
 const bcrypt = require('bcrypt')
 const upload = require('../middleware/photo-upload')
+const isSignedIn = require("../middleware/is-signed-in")
 
-router.get("/", isAdmin, async(req,res)=>{
+router.get("/", isSignedIn, isAdmin, async(req,res)=>{
     const totalHospitals = await Hospital.countDocuments()
     const totalDepartments = await Department.countDocuments()
     const totalDoctors = await User.countDocuments({role: "doctor"})
     const totalAppointments = await Appointment.countDocuments()
 
-    const allAppointments = await Appointment.find().populate({
-        path:'doctor',
-        populate:{
-            path:'hospital'
-        }
-    })
+    const totalPatients = await User.countDocuments({role: "patient"})
+    const totalAdmins = await User.countDocuments({role: "admin"})
+
+    // const allAppointments = await Appointment.find().populate({
+    //     path:'doctor',
+    //     populate:{
+    //         path:'hospital'
+    //     }
+    // })
 
 
-    const topHospitals = {}
+    // const topHospitals = {}
 
-    allAppointments.forEach((oneAppointment)=>{
-        const {name} = oneAppointment.doctor.hospital
-        if(topHospitals[name]) topHospitals[name]+= 1
-        else topHospitals[name] = 1
-    })
-    console.log(allAppointments)
-    console.log(Object.keys(allAppointments))
+    // allAppointments.forEach((oneAppointment)=>{
+    //     const {name} = oneAppointment.doctor.hospital
+    //     if(topHospitals[name]) topHospitals[name]+= 1
+    //     else topHospitals[name] = 1
+    // })
+    // console.log(allAppointments)
+    // console.log(Object.keys(allAppointments))
+
+    // res.render("admin/admin-dash.ejs", {totalHospitals,totalDepartments,totalDoctors, totalAppointments, topHospitals})
 
 
-    res.render("admin/admin-dash.ejs", {totalHospitals,totalDepartments,totalDoctors, totalAppointments, topHospitals})
+    res.render("admin/admin-dash.ejs", {totalHospitals,totalDepartments,totalDoctors, totalAppointments, totalPatients, totalAdmins})
 })
 
 // Display all hospitals 
-router.get("/hospitals",isAdmin,async(req,res)=>{
+router.get("/hospitals",isSignedIn, isAdmin,async(req,res)=>{
     const allHospital = await Hospital.find()
     const message = req.session.message
     req.session.message= null
@@ -47,12 +53,12 @@ router.get("/hospitals",isAdmin,async(req,res)=>{
 
 
 // Create a new hospital 
-router.get("/hospitals/new", isAdmin, async(req,res)=>{
+router.get("/hospitals/new",isSignedIn, isAdmin, async(req,res)=>{
     res.render("admin/create-hospital.ejs")
 })
 
 
-router.post("/hospitals", isAdmin,upload.single('imageUrl'), async (req,res)=>{
+router.post("/hospitals",isSignedIn, isAdmin,upload.single('imageUrl'), async (req,res)=>{
     console.log(req.file)
     const createHospital = await Hospital.create({
         name: req.body.name,
@@ -69,13 +75,13 @@ router.post("/hospitals", isAdmin,upload.single('imageUrl'), async (req,res)=>{
 })
 
 // edit hospital
-router.get("/hospitals/:hospitalId/edit", isAdmin,async(req,res)=>{
+router.get("/hospitals/:hospitalId/edit",isSignedIn, isAdmin,async(req,res)=>{
     const foundHospital = await Hospital.findById(req.params.hospitalId)
     res.render("admin/edit-hospital.ejs", {hospital: foundHospital})
 })
 
 
-router.put("/hospitals/:hospitalId", isAdmin, upload.single('imageUrl') ,async(req,res)=>{
+router.put("/hospitals/:hospitalId",isSignedIn, isAdmin, upload.single('imageUrl') ,async(req,res)=>{
     const {name, phone, location, description, latitude ,longitude} = req.body
 
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : null
@@ -86,13 +92,13 @@ router.put("/hospitals/:hospitalId", isAdmin, upload.single('imageUrl') ,async(r
     res.redirect("/admin/hospitals")
 })
 
-router.get('/departments/get-hospital/:hospital',async(req,res)=>{
+router.get('/departments/get-hospital/:hospital',isSignedIn,isAdmin, async(req,res)=>{
     const foundDepartments = await Department.find({hospital:req.params.hospital})
     res.json(foundDepartments)
 })
 
 // Delete Hospital
-router.delete("/hospitals/:hospitalId",isAdmin, async (req,res)=>{
+router.delete("/hospitals/:hospitalId",isSignedIn, isAdmin, async (req,res)=>{
     const deleteHospital = await Hospital.findByIdAndDelete(req.params.hospitalId)
     req.session.message = "Hospital Deleted Successfully!"
     res.redirect("/admin/hospitals")
@@ -104,7 +110,7 @@ router.delete("/hospitals/:hospitalId",isAdmin, async (req,res)=>{
 // ------------------------------------------
 
 // Display all Departments 
-router.get("/departments",isAdmin,async(req,res)=>{
+router.get("/departments",isSignedIn,isAdmin,async(req,res)=>{
     const allDepartment = await Department.find().populate("hospital")
     const message = req.session.message
     req.session.message = null
@@ -113,13 +119,13 @@ router.get("/departments",isAdmin,async(req,res)=>{
 
 
 // Create a new department 
-router.get("/departments/new", isAdmin, async(req,res)=>{
+router.get("/departments/new",isSignedIn, isAdmin, async(req,res)=>{
     const allHospitals = await Hospital.find()
     res.render("admin/create-department.ejs", {hospitals : allHospitals})
 })
 
 
-router.post("/departments", isAdmin, async (req,res)=>{
+router.post("/departments",isSignedIn, isAdmin, async (req,res)=>{
     const createDepartment = await Department.create({
         name: req.body.name,
         description: req.body.description,
@@ -131,7 +137,7 @@ router.post("/departments", isAdmin, async (req,res)=>{
 })
 
 // edit department
-router.get("/departments/:departmentId/edit", isAdmin,async(req,res)=>{
+router.get("/departments/:departmentId/edit",isSignedIn, isAdmin,async(req,res)=>{
     const foundDepartment = await Department.findById(req.params.departmentId)
     const allHospital = await Hospital.find()
 
@@ -139,7 +145,7 @@ router.get("/departments/:departmentId/edit", isAdmin,async(req,res)=>{
 })
 
 
-router.put("/departments/:departmentId", isAdmin ,async(req,res)=>{
+router.put("/departments/:departmentId",isSignedIn, isAdmin ,async(req,res)=>{
     const {name, description, hospital} = req.body
     const updateDepartment = await Department.findByIdAndUpdate(req.params.departmentId,{
         name, description, hospital
@@ -151,7 +157,7 @@ router.put("/departments/:departmentId", isAdmin ,async(req,res)=>{
 
 
 // Delete department
-router.delete("/departments/:departmentId",isAdmin, async (req,res)=>{
+router.delete("/departments/:departmentId",isSignedIn,isAdmin, async (req,res)=>{
     const deleteDepartment = await Department.findByIdAndDelete(req.params.departmentId)
     req.session.message="Department Deleted Successfully!"
     res.redirect("/admin/departments")
@@ -161,7 +167,7 @@ router.delete("/departments/:departmentId",isAdmin, async (req,res)=>{
 // ------------------------------------------
 
 // Display all Doctors 
-router.get("/doctors",isAdmin,async(req,res)=>{
+router.get("/doctors",isSignedIn, isAdmin,async(req,res)=>{
     const allDoctors = await User.find({role: "doctor"}).populate("department").populate("hospital")
     const message = req.session.message
     req.session.message=null
@@ -170,14 +176,14 @@ router.get("/doctors",isAdmin,async(req,res)=>{
 
 
 // Create a new Doctor 
-router.get("/doctors/new", isAdmin, async(req,res)=>{
+router.get("/doctors/new",isSignedIn, isAdmin, async(req,res)=>{
     const allDepartments = await Department.find().populate("hospital")
     const allHospital = await Hospital.find()
     res.render("admin/create-doctor.ejs", {departments: allDepartments, hospitals: allHospital})
 })
 
 
-router.post("/doctors", isAdmin,upload.single('imageUrl'),async (req,res)=>{
+router.post("/doctors",isSignedIn, isAdmin,upload.single('imageUrl'),async (req,res)=>{
     const createDoctor = await User.create({
         username: req.body.username,
         email: req.body.email,
@@ -194,7 +200,7 @@ router.post("/doctors", isAdmin,upload.single('imageUrl'),async (req,res)=>{
 })
 
 // edit doctor
-router.get("/doctors/:doctorId/edit", isAdmin,async(req,res)=>{
+router.get("/doctors/:doctorId/edit",isSignedIn, isAdmin,async(req,res)=>{
     const foundDoctor = await User.findById(req.params.doctorId)
     const allDepartment = await Department.find().populate("hospital")
     const allHospital = await Hospital.find()
@@ -202,10 +208,11 @@ router.get("/doctors/:doctorId/edit", isAdmin,async(req,res)=>{
 })
 
 
-router.put("/doctors/:doctorId", isAdmin, upload.single('imageUrl')  ,async(req,res)=>{
+router.put("/doctors/:doctorId",isSignedIn, isAdmin, upload.single('imageUrl')  ,async(req,res)=>{
     const {username, email, bio, department, hospital} = req.body
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null
     const updateDoctor = await User.findByIdAndUpdate(req.params.doctorId,{
-        username, email, bio, department, hospital, imageUrl:`/uploads/${req.file.filename}`
+        username, email, bio, department, hospital
     })
 
     req.session.message="Doctor Updated Successfully!"
@@ -215,7 +222,7 @@ router.put("/doctors/:doctorId", isAdmin, upload.single('imageUrl')  ,async(req,
 
 
 // Delete doctor
-router.delete("/doctors/:doctorId",isAdmin, async (req,res)=>{
+router.delete("/doctors/:doctorId",isSignedIn,isAdmin, async (req,res)=>{
     const deleteDoctor = await User.findByIdAndDelete(req.params.doctorId)
     req.session.message="Doctor Deleted Successfully!"
     res.redirect("/admin/doctors")

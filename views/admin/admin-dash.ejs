@@ -64,47 +64,46 @@
         <div class="chart-card">
 
             <div class="chart-header">
-                <h2>Top 5 Hospitals by Patient Appointments</h2>
-                <button class="export-button">
-                    <i class="bi bi-file-earmark-pdf"></i>
-                    Export to PDF
-                </button>
+                <!-- <h2>Top 5 Hospitals by Patient Appointments</h2> -->
+                 <h2>Total Users by Role</h2>
             </div>
 
             <div class="chart-container">
-                <canvas id="hospitalChart"></canvas>
+                <canvas id="userChart"></canvas>
             </div>
         </div>
     </div>
-
+    
     <script>
-    const ctx = document.querySelector('#hospitalChart')
+        const ctx = document.querySelector('#userChart')
 
-    new Chart(ctx, {
-        type: 'bar',
+        new Chart(ctx, {
+            type: 'pie',
 
-        data: {
-            labels: <%- [Object.keys(topHospitals)] %>,
+            data: {
+                labels: ['Patients', 'Doctors', 'Admins'],
 
-            datasets: [{
-                label: 'Appointments',
-                data: <%- [Object.values(topHospitals)] %>,
-                backgroundColor: '#5BBFB5',
-                borderRadius: 6
-            }]
-        },
+                datasets: [{
+                    label: 'Users',
+                    data: [
+                        <%= totalPatients %>,
+                        <%= totalDoctors %>,
+                        <%= totalAdmins %>
+                    ],
 
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
+                    backgroundColor: [
+                        '#5BBFB5',
+                        '#4E8FBF',
+                        '#F2B56B'
+                    ]
+                }]
+            },
 
-            plugins: {
-                legend: {
-                    display: false
-                }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
             }
-        }
-    })
+        })
     </script>
 </body>
 </html>

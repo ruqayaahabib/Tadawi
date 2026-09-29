@@ -11,14 +11,14 @@ async function fetchDepartments(event){
 
     console.log(result)
 
+    departmentSelectEl.innerHTML = ''
     for(oneDepartment of result){
         const optionEl = document.createElement('option')
         optionEl.textContent = oneDepartment.name
         optionEl.value=oneDepartment._id
-        departmentSelectEl.innerHTML = ''
         departmentSelectEl.appendChild(optionEl)
 
     }
 }
 
-hospitalSelectEl.addEventListener('click',fetchDepartments)
+hospitalSelectEl.addEventListener('change',fetchDepartments)
