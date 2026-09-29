@@ -1,0 +1,132 @@
+body {
+    background-color: #f4fbfa;
+    font-family: serif;
+
+}
+
+
+.department-header {
+    background: linear-gradient(
+        110deg,
+        #0f766e 0%,
+        #14b8a6 45%,
+        #0f766e 100%
+    );
+
+    padding: 80px 0;
+    margin-bottom: 50px;
+}
+
+.department-header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.department-header-content h1 {
+    color: white;
+    font-size: 42px;
+    font-weight: bold;
+    margin: 0 0 12px;
+}
+
+.department-header-content p {
+    color: white;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 650px;
+}
+
+.doctors-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px 60px;
+}
+
+.doctors-header {
+    margin-bottom: 25px;
+}
+
+.doctors-header h2 {
+    color: #102a3a;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.doctors-header p {
+    color: #64748b;
+    font-size: 16px;
+    margin-top: 7px;
+}
+
+.doctors-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.doctor-card {
+    width: 300px;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.doctor-image {
+    position: relative;
+    height: 260px;
+}
+
+.doctor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.doctor-image a {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    padding: 14px;
+
+    background-color: #0f766e;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+
+    opacity: 0;
+}
+
+.doctor-card:hover .doctor-image a {
+    opacity: 1;
+}
+
+.doctor-image a:hover {
+    background-color: #138f85;
+    color: white;
+}
+
+.doctor-info {
+    padding: 22px;
+}
+
+.doctor-info p:first-child {
+    color: #102a3a;
+    font-size: 19px;
+    font-weight: bold;
+    margin: 0 0 12px;
+}
+
+.doctor-info p:last-child {
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+}

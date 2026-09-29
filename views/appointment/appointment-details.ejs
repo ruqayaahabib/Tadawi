@@ -4,19 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment Details</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/appointment-details.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/delete-confirmation.js"></script>
 </head>
 <body>
     <%- include('../partials/navbar') %>
-    <h1>Appointment Details</h1>
-    <p>Date: <%= appointment.date%></p>
-    <p>Time: <%= appointment.time  %></p>
-    <p>Reason: <%= appointment.reason %></p>
-    <p>Status: <%= appointment.status %></p>
+    <div class="appointment-page">
+        <div class="appointment-header">
+            <h1>Appointment Details</h1>
+            <p>View and manage your appointment information.</p>
+        </div>
+        <div class="appointment-card">
+            <div class="appointment-info">
+                <span>Date</span>
+                <%= appointment.date.toDateString()%>
+            </div>
+            <div class="appointment-info">
+                <span>Time</span>
+                <%= appointment.time  %>
+            </div>
+            <div class="appointment-info">
+                <span>Reason</span>
+                <%= appointment.reason %>
+            </div>
+            <div class="appointment-info">
+                <span>Status</span>
+                <%= appointment.status %>
+            </div>
+            <div class="appointment-actions">
+                <a href="/appointments/<%= appointment._id %>/edit" class="edit-button">Edit Appointment</a>
 
-    <a href="/appointments/<%= appointment._id %>/edit">Edit Appointment</a>
-    <form action="/appointments/<%= appointment._id %>?_method=DELETE" method="POST">
-    <button onclick="confirmDelete(event, 'Do you want to cancel this appointment?')">Cancel Appointment</button> </form>
+                <form action="/appointments/<%= appointment._id %>?_method=DELETE" method="POST">
+                <button class="cancel-button" onclick="confirmDelete(event, 'Do you want to cancel this appointment?')">Cancel Appointment</button> </form>
+            </div>
+        </div>
+    </div>
+
+   
 </body>
 </html>

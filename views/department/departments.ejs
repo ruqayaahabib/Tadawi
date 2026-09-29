@@ -3,22 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Department Details</title>
+    <title>Department and Doctor Details</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/department-details.css">
 </head>
 <body>
     <%- include('../partials/navbar') %>
-    <h1><%= department.name  %></h1>
+    <div class="department-header">
+        <div class="department-header-content">
+            <h1>Explore Doctors in <%= department.name %> Department</h1>
+            <p><%= department.description %></p>
+        </div>
+    </div>
+    <div class="doctors-section">
+        <div class="doctors-list">
+            <% for(let doctor of doctors){ %>
+                <div class="doctor-card">
+                    <div class="doctor-image">
+                        <img src="<%= doctor.imageUrl %>" alt="<%= doctor.username %>">
+                        <a href="/appointments/new/<%= doctor._id %>">
+                            Book Appointment
+                        </a>
+                    </div>
+                    <div class="doctor-info">
+                        <p><%= doctor.username  %></p>
+                        <p><%= doctor.bio  %></p>
+                    </div>
+                </div>
 
-    <p><%= department.description  %></p>
+
+
+            <% } %>
+        </div>
+    </div>
+
     
-    <h2>Doctors</h2>
-    <% for(let doctor of doctors){ %>
-        <p><%= doctor.username  %></p>
-        <p><%= doctor.bio  %></p>
-        <a href="/appointments/new/<%= doctor._id %>">
-            Book Appointment
-        </a>
 
-        <% } %>
+
 </body>
 </html>

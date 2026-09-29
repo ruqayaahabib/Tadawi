@@ -5,22 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Appointments</title>
 
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/my-appointments.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 <body>
     <%- include('../partials/navbar') %>
-    <h1>My Appointments</h1>
-    <% for (let oneAppointment of appointments){ %> 
-        <p>Date: <%= oneAppointment.date  %></p>
-        <p>Time: <%= oneAppointment.time  %></p>
-        <p>Status: <%= oneAppointment.status  %></p>
+    <div class="appointments-page">
+        <div class="appointments-header">
+            <h1>My Appointments</h1>
+            <p>View and manage your upcoming and previous appointments.</p>
+        </div>
 
-        <a href="/appointments/<%= oneAppointment._id  %>">
-            View Details
-        </a>
-        <% } %>
+        <div class="appointments-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <% for (let oneAppointment of appointments){ %> 
+                        <tr>
+                            <td>
+                                <p><%= oneAppointment.date.toDateString()  %></p>
+                            </td>
+                            <td>
+                                <p><%= oneAppointment.time  %></p>
+                            </td>
+                            <td>
+                                <span class="appointment-status">
+                                    <%= oneAppointment.status  %>
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/appointments/<%= oneAppointment._id  %>" class="details-button">
+                                    View Details
+                                </a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <% if(message) {%>
         <script>

@@ -4,22 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Appointment</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/book-appointment.css">
 </head>
 <body>
     <%- include('../partials/navbar') %>
-    <h1>Update Appointment</h1>
-    <form action="/appointments/<%=appointment._id%>?_method=PUT" method="post">
-        <label for="date">Date:</label>
-        <input value="<%= appointment.date %>" id="date" name="date" type="date">
+    <div class="booking-page">
+        <div class="booking-header">
+            <h1>Update Appointment</h1>
+            <p>Update your appointment date, time or reason for your visit.</p>
+        </div>
 
-        <label for="time">Time:</label>
-        <input value="<%= appointment.time %>" id="time" name="time" type="time">
+        <div class="booking-form">
 
-        <label for="reason">Reason:</label>
-        <input value="<%= appointment.reason %>" id="reason" name="reason" type="text">
+            <form action="/appointments/<%=appointment._id%>?_method=PUT" method="post">
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input value="<%= appointment.date.toISOString().split('T')[0] %>" id="date" name="date" type="date">
+                </div>
+                <div class="form-group">
+                    <label for="time">Time:</label>
+                    <input value="<%= appointment.time %>" id="time" name="time" type="time">
+                </div>
+                <div class="form-group">
+                    <label for="reason">Reason:</label>
+                    <input value="<%= appointment.reason %>" id="reason" name="reason" type="text">
+                </div>
 
-        <button>Update</button>
+                <button class="book-button">Update</button>
 
-    </form>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

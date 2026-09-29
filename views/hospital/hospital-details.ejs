@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital Details</title>
 
-    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/hospital-details.css">
     <link rel="stylesheet" href="/css/navbar.css">
 
      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -21,25 +24,65 @@
 </head>
 <body>
     <%- include('../partials/navbar') %>
-    <h1><%= hospital.name %></h1>
+    <div class="hospital-page">
+        <div class="hospital-header">
+            <h1><%= hospital.name %></h1>
+            <img src="<%= hospital.imageUrl %>" alt="<%= hospital.name %>">
+                
+        </div>
+        <div class="hospital-content">
+            <div class="hospital-information">
+                <h2>Hospital Information</h2>
+                <div class="information-item">
+                    <i class="bi bi-geo-alt"></i>
+                    <div>
+                        <span>Location</span>
+                        <p><%= hospital.location %></p>
+                    </div>
+                </div>
+                <div class="information-item">
+                    <i class="bi bi-telephone"></i>
+                    <div>
+                        <span>Phone Number</span>
+                        <p><%= hospital.phone %></p>
+                    </div>
+                </div>
+                <div class="information-item">
+                    <i class="bi bi-card-text"></i>
+                    <div>
+                        <span>Description</span>
+                        <p><%= hospital.description %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="hospital-location">
+                <h2>Location</h2>
+                <div id="map"> </div>
+            </div>
+        </div>
 
-    <p>Location: <%= hospital.location%></p>
-    <p>Phone Number: <%= hospital.phone%></p>
-    <p>Description: <%= hospital.description  %></p>
-     <div id="map">
-     </div>
+            <div class="departments-section">
+                <div class="departments-header">
+                    <h2>Departments at this Hospital</h2>
+                    <p>Explore the departments available at <%= hospital.name %>.</p>
+                </div>
+                <div class="departments-list">
+                    <% for(let department of departments){%>
+                        <div class="department-card">
+                            <h3><%= department.name  %></h3>
+                            <p><%= department.description %></p>
+                            <a href="/departments/<%= department._id %>" class="department-button">
+                                Explore Doctors
+                            </a>
+                        </div>
+                                               
+                        
+                    <% } %>
 
+                </div>
+            </div>
+        </div>
 
-    <h2>Departments</h2>
-    <% for(let department of departments){%>
-        <h3><%= department.name  %></h3>
-        <p><%= department.description %></p>
-        <a href="/departments/<%= department._id %>">
-            View Department Details
-        </a>
-        
-        <% } %>
-        
     <script>
         var map = L.map('map').setView([<%= hospital.latitude %>, <%= hospital.longitude %>], 13);
 
