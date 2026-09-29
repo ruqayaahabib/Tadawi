@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,35 +10,43 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/all-hospitals.css">
 </head>
+
 <body>
     <%- include('../partials/navbar') %>
-    <div class="container py-5">
-        <div class="row g-4">
-            <div class="hospitals-header">
-                <h1>Browse Hospitals In Bahrain</h1>
-                <p>Find the right hospital for your needs</p>
-            </div>
-            <div class="hospital-search">
-                <i class="bi bi-search"></i>
-                <input type="text" name="search" placeholder="Search hospitals...">
-                <button type="submit">Search</button>
-            </div>
-        <% for(let hospital of hospitals) {%>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="<%= hospital.imageUrl%>" class="card-img-top" alt="">
-                    <div class="card-body">
-                      <h5 class="card-title"><%= hospital.name  %></h5>
-                        <p class="card-text">Location: <%= hospital.location %></p>
-                      <a href="/hospitals/<%= hospital._id %>" class="btn btn-primary">
-                        View Details
-                       <i class="bi bi-arrow-right"></i>
-                      </a>
-                    </div>
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="hospitals-header">
+                    <h1>Browse Hospitals In Bahrain</h1>
+                    <p>Find the right hospital for your needs</p>
                 </div>
+                <form action="/hospitals" method="get">
+                    <div class="hospital-search">
+                        <i class="bi bi-search"></i>
+                        <input type="text" name="search" placeholder="Search hospitals...">
+                        <button type="submit">Search</button>
+                    </div>
+                </form>
+
+                <% for(let hospital of hospitals) {%>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="<%= hospital.imageUrl%>" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= hospital.name %>
+                                </h5>
+                                <p class="card-text">Location: <%= hospital.location %>
+                                </p>
+                                <a href="/hospitals/<%= hospital._id %>" class="btn btn-primary">
+                                    View Details
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
             </div>
-        <% } %>
         </div>
-    </div>   
 </body>
+
 </html>
