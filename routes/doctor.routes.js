@@ -45,7 +45,10 @@ router.put("/appointments/:appointmentId",isSignedIn, isDoctor,async(req,res)=>{
     })
 
     req.session.message="Appointment Status Updated Successfully!"
-    res.redirect("/doctor/appointments")
+    req.session.save(()=>{
+        res.redirect("/doctor/appointments")
+
+    })
 
     
 })

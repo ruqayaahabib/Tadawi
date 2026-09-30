@@ -1,3 +1,174 @@
-#map {     
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Special+Gothic+Condensed+One&display=swap');
+/* #map {     
     height: 300px;
-    width: 400px; }
+    width: 400px; } */
+
+body {
+    margin: 0;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    background-color: #f4fbfa;
+
+}
+
+.hospitals-section {
+    padding: 80px 0;
+    background-color: white;
+    overflow: hidden;
+}
+
+.hospitals-heading {
+    padding: 0 5%;
+    margin-bottom: 40px;
+}
+
+.hospitals-heading h2 {
+    margin: 0;
+    color: #102a3a;
+    font-size: 42px;
+}
+
+.hospitals-heading p {
+    color: #64748b;
+    font-size: 17px;
+    margin-top: 8px;
+}
+
+.hospital-row {
+    width: 100%;
+}
+
+.hospital-track {
+    display: flex;
+    width: 100%;
+}
+
+.hospital-logo {
+    height: 150px;
+    border: 1px solid #dcebea;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1;
+}
+
+.hospital-logo img {
+    max-width: 65%;
+    max-height: 70px;
+    object-fit: contain;
+
+    filter: grayscale(100%);
+    opacity: 0.65;
+
+    transition: 0.3s;
+}
+
+.hospital-logo:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Why Tadawi Section */
+
+.why-section {
+    padding: 80px 5%;
+    background-color: white;
+}
+
+.why-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.why-heading h2 {
+    margin: 0;
+    color: #102a3a;
+    font-size: 42px;
+}
+
+.why-heading p {
+    color: #64748b;
+    font-size: 17px;
+    margin-top: 8px;
+}
+
+.why-cards {
+    display: flex;
+    gap: 25px;
+}
+
+.why-card {
+    flex: 1;
+    padding: 35px;
+    text-align: center;
+    border: 1px solid #dcebea;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.why-card i {
+    font-size: 38px;
+    color: #4f9c96;
+    transition: 0.3s;
+}
+
+.why-card h3 {
+    color: #102a3a;
+    font-size: 22px;
+    margin: 18px 0 10px;
+}
+
+.why-card p {
+    color: #64748b;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Hover */
+
+.why-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border-color: #4f9c96;
+}
+
+.why-card:hover i {
+    transform: scale(1.15);
+}
+
+/* Footer */
+
+.footer {
+    margin-top: 40px;
+    background-color: #102a3a;
+    color: white;
+    padding: 60px 5% 25px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.footer-brand h2 {
+    font-size: 35px;
+    margin: 0;
+}
+
+.footer-brand p {
+    color: #b8c8cf;
+    margin-top: 8px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #36505e;
+    padding-top: 20px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #b8c8cf;
+}

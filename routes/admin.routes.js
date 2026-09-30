@@ -19,27 +19,6 @@ router.get("/", isSignedIn, isAdmin, async(req,res)=>{
     const totalPatients = await User.countDocuments({role: "patient"})
     const totalAdmins = await User.countDocuments({role: "admin"})
 
-    // const allAppointments = await Appointment.find().populate({
-    //     path:'doctor',
-    //     populate:{
-    //         path:'hospital'
-    //     }
-    // })
-
-
-    // const topHospitals = {}
-
-    // allAppointments.forEach((oneAppointment)=>{
-    //     const {name} = oneAppointment.doctor.hospital
-    //     if(topHospitals[name]) topHospitals[name]+= 1
-    //     else topHospitals[name] = 1
-    // })
-    // console.log(allAppointments)
-    // console.log(Object.keys(allAppointments))
-
-    // res.render("admin/admin-dash.ejs", {totalHospitals,totalDepartments,totalDoctors, totalAppointments, topHospitals})
-
-
     res.render("admin/admin-dash.ejs", {totalHospitals,totalDepartments,totalDoctors, totalAppointments, totalPatients, totalAdmins})
 })
 
@@ -95,8 +74,9 @@ router.put("/hospitals/:hospitalId",isSignedIn, isAdmin, upload.single('imageUrl
 })
 
 router.get('/departments/get-hospital/:hospital',isSignedIn,isAdmin, async(req,res)=>{
-    const foundDepartments = await Department.find({hospital:req.params.hospital})
-    res.json(foundDepartments)
+    // find departments belong to  selected hospital
+    const foundDepartments = await Department.find({hospital:req.params.hospital}) 
+    res.json(foundDepartments) //send back as json 
 })
 
 // Delete Hospital

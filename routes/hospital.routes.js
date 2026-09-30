@@ -6,6 +6,7 @@ const Department = require("../models/Department")
 // Displat all hospitals
 router.get("/", async(req,res)=>{
     const filter = {}
+    // Filter hospitals by name if the user enters a search
     if(req.query.search) filter.name = {$regex:req.query.search, $options:'i'}
     const allHospital = await Hospital.find(filter)
     res.render("hospital/all-hospital.ejs", {hospitals :allHospital})

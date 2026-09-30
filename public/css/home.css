@@ -1,18 +1,9 @@
-body {
-    margin: 0;
-}
-
-
-/* Home Section */
-
 .home-intro {
     position: relative;
     height: 85vh;
     overflow: hidden;
 }
 
-
-/* Background Image */
 
 .background-image {
     width: 100%;
@@ -23,8 +14,6 @@ body {
     background-position: center;
 }
 
-
-/* Text */
 
 .intro-content {
     position: absolute;
@@ -45,8 +34,6 @@ body {
     margin-bottom: 30px;
 }
 
-
-/* Explore Button */
 
 .browse-button {
     background-color: #0f766e;
