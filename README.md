@@ -211,6 +211,10 @@ npm i
 
 - **Responsive Interface** – Bootstrap and custom CSS are used to create a responsive and consistent user interface.
 
+- **Dynamic Department Dropdown** – Departments change automatically based on the selected hospital using the Fetch API.
+
+- **Doctor Upcoming Appointments** – Displays the doctor's next 5 upcoming appointments, sorted by date.
+
 
 <br>
 <br>
